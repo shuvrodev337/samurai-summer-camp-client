@@ -1,62 +1,78 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
 
-    const navItems = (
-        <>
-          <li>
-            <Link to={"/"} className="btn-btn-ghost">
-              Home
-            </Link>
-          </li>
+     // Central Nav Buttons
+  const centerNavItems = (
+    <>
+      
+        <NavLink to={"/"}>Home</NavLink>
+      
+      
+        <NavLink  to={"/"}>Classes</NavLink>
           
-          <li>
-            <Link to={"/signup"} className="btn-btn-ghost">
-              Sign Up
-            </Link>
-          </li>
-          <li>
-            <Link to={"/login"} className="btn-btn-ghost">
-              Login
-            </Link>
-          </li>
-        </>
-      );
+       
+    </>
+  );
+
+  // Right Side Nav Buttons
+  const endNavItems = (
+    <>
+          
+            <NavLink to={"/login"}>Login</NavLink>
+            <NavLink to={"/signup"}>Sign Up</NavLink>
+            <NavLink >Log Out</NavLink>
+          
+
+      
+    </>
+  );
 
 
     return (
-        <div className="navbar  max-w-screen-xl">
-      <div className="navbar-start flex-1">
-        <a className="btn btn-ghost normal-case text-xl">Samurai Summer Camp</a>
+        <div className="navbar h-24 mb-10 px-6 text-slate-500 rounded-lg mt-4 bg-transparent max-w-screen-xl">
+      <div className="navbar-start space-x-2">
+        {/* <NavLink to={"/"}>
+          <img src={websiteLogo} alt="" className="h-20" />
+        </NavLink> */}
+        <NavLink to={"/"}>
+          <h2 className="text-3xl font-bold">Samurai Summer Camp</h2>
+        </NavLink>
       </div>
-
-      <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
-        </label>
-        <ul
-          tabIndex={0}
-          className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-slate-600"
-        >
-          {navItems}
+      <div className="navbar-center hidden lg:flex ">
+        <ul className="menu menu-horizontal space-x-6  items-center">{centerNavItems}</ul>
+      </div>
+      <div className="navbar-end ">
+        <ul className="menu menu-horizontal space-x-6 hidden lg:flex items-center">
+          {endNavItems}
         </ul>
-      </div>
-      <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navItems}</ul>
+
+        <div className="dropdown dropdown-bottom dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-300 rounded-box w-52 items-center"
+          >
+            {centerNavItems}
+            {endNavItems}
+          </ul>
+        </div>
       </div>
     </div>
     );

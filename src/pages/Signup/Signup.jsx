@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import SectionTitle from "../../components/sectionTitle";
 import axios from "axios";
 import Swal from "sweetalert2";
+import SocialLogins from "../../components/SocialLogins";
 
 const Signup = () => {
     const [errorMsg,setErrorMsg] = useState('')
@@ -25,7 +26,7 @@ const Signup = () => {
         .then(() => {
           updateUserProfile(user.name, user.photo)
             .then(() => {
-              const savedUser = { name: user.name, email: user.email, photo: user.photo}
+              const savedUser = { name: user.name, email: user.email, photo: user.photo, role: 'student'}
 
               axios.post('http://localhost:3000/users',savedUser)
               .then(res=>{
@@ -33,14 +34,18 @@ const Signup = () => {
                 if (res.data.insertedId) {
                   reset();
                   Swal.fire({
-                      position: 'top-end',
+                      position: 'center',
                       icon: 'success',
-                      title: 'User sign Up successful.',
+                      title: 'User sign Up successful.PLease Login',
                       showConfirmButton: false,
                       timer: 1500
                   });
-                  navigate('/');
-                  //  TODO : logout user from here
+                  
+                  //  TODO : uncomment logout section
+                  // logOut().then(() => {
+                  //   navigate("/login");
+                  // });
+                  
                 }
 
               })
@@ -157,9 +162,8 @@ const Signup = () => {
                 />
               </div>
             </form>
-            <p className="text-center">Already have an account? <Link className="btn btn-ghost btn-xs underline mb-4" to={'/login'}>Log In Here!</Link></p>
-      {/* <p className="text-center pb-3">Back to <Link className="btn btn-ghost btn-xs underline" to={'/'}>Home</Link></p> */}
-    {/* <SocialLogin></SocialLogin> */}
+            <p className="text-center">Already have an account? <Link className="btn btn-ghost btn-sm underline mb-4" to={'/login'}>Log In Here!</Link></p>
+            <SocialLogins></SocialLogins>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SectionTitle from "../../components/sectionTitle";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import SocialLogins from "../../components/SocialLogins";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -93,9 +94,9 @@ const Login = () => {
               />
             </div>
           </form>
-          <p className="text-center">New Here? <Link className="btn btn-ghost btn-xs underline mb-4" to={'/signup'}>Sign Up!</Link></p>
-    {/* <p className="text-center pb-3">Back to <Link className="btn btn-ghost btn-xs underline" to={'/'}>Home</Link></p> */}
-  {/* <SocialLogin></SocialLogin> */}
+          <p className="text-center">New Here? <Link className="btn btn-ghost btn-sm underline mb-4" to={'/signup'}>Sign Up!</Link></p>
+
+  <SocialLogins></SocialLogins>
         </div>
       </div>
     </div>

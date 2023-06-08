@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import SectionTitle from "../../components/sectionTitle";
 const Login = () => {
 
   const [errorMsg,setErrorMsg] = useState('')
@@ -29,11 +30,11 @@ const Login = () => {
   }
 
     return (
+    <>
+    <SectionTitle sectionHeading={'Log In Here'} ></SectionTitle>
       <div className="md:w-1/2 mx-auto">
       <div className="hero-content flex-col gap-10">
-        <div className="text-center ">
-          <h1 className="text-5xl font-bold">Log In now!</h1>
-        </div>
+        
         <div className="card  w-full  shadow-2xl bg-base-100 ">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             
@@ -43,7 +44,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                placeholder="Email"
+                placeholder="Your Email"
                 className="input input-bordered"
                 {...register("email", { required: true })} 
 
@@ -86,6 +87,9 @@ const Login = () => {
         </div>
       </div>
     </div>
+    
+    
+    </>
     );
 };
 

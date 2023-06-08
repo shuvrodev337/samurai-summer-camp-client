@@ -3,7 +3,10 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SectionTitle from "../../components/sectionTitle";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
+
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
 
   const [errorMsg,setErrorMsg] = useState('')
   const {loginWithEmailPass, logOut} = useAuth()
@@ -58,13 +61,22 @@ const Login = () => {
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
+              <div className="flex items-center">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="********"
-                className="input input-bordered"
+                className="input input-bordered w-full"
                 {...register("password")}
 
               />
+              <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="btn btn-link btn-xs"
+                >
+                  {showPassword ? <FaEyeSlash className="text-xl text-gray-500"></FaEyeSlash >:<FaEye className="text-2xl text-gray-500"></FaEye>}
+                </button>
+              </div>
               {errors.password?.type === "required" && (
                 <p className="text-red-800 text-sm">Password is required</p>
               )}

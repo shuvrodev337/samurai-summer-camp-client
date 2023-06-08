@@ -40,6 +40,7 @@ const Signup = () => {
                       timer: 1500
                   });
                   navigate('/');
+                  //  TODO : logout user from here
                 }
 
               })
@@ -61,9 +62,7 @@ const Signup = () => {
         <SectionTitle sectionHeading={'Sign Up Now!'}></SectionTitle>
         <div className="md:w-1/2 mx-auto">
         <div className="hero-content flex-col gap-10">
-          {/* <div className="text-center ">
-            <h1 className="text-5xl font-bold">Sign Up now!</h1>
-          </div> */}
+          
           <div className="card  w-full  shadow-2xl bg-base-100 ">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">

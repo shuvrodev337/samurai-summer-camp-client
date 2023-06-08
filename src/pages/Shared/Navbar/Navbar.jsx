@@ -3,104 +3,89 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-
-const {user, logOut} = useAuth()
-
-const handleLogOut = () => {
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You will be logged out!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, Log Out!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      logOut()
-    .then(() => {
-      // refetch()
-      Swal.fire(
-        'You have been logged out!',
-      )
-    })
-    .catch((error) => {
-      Swal.fire(error.message);
-    });
-      
-    }
-  })
+  const { user, logOut } = useAuth();
+  const isAdmin = false
+  const isInstructor = false
+  const isStudent = false
   
-};
 
-     // Central Nav Buttons
+  const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Log Out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+          .then(() => {
+            // refetch()
+            Swal.fire("You have been logged out!");
+          })
+          .catch((error) => {
+            Swal.fire(error.message);
+          });
+      }
+    });
+  };
+
+  // Central Nav Buttons
   const centerNavItems = (
     <>
-      
-        <NavLink to={"/"}>Home</NavLink>
-      
-      
-        <NavLink  to={"/"}>Classes</NavLink>
-          
-       
+      <NavLink to={"/"}>Home</NavLink>
+
+      <NavLink to={"/"}>Classes</NavLink>
+      {isAdmin && <NavLink to={"/dashboard/adminhome"}>Admin Dashboard</NavLink>}
+      {isInstructor && <NavLink to={"/dashboard/instructorhome"}>Instructor Dashboard</NavLink>}
+      {isStudent && <NavLink to={"/dashboard/studenthome"}>Student Dashboard</NavLink>}
+
     </>
   );
 
   // Right Side Nav Buttons
   // const endNavItems = (
   //   <>
-          
+
   //           {user?<>
   //           <NavLink to={"/login"}>Login</NavLink>
   //           <NavLink to={"/signup"}>Sign Up</NavLink>
   //           </>:
-            
+
   //           <NavLink onClick={handleLogOut}>Log Out</NavLink>
 
   //           }
-          
 
-      
   //   </>
   // );
   const endNavItems = (
     <>
       {user?.email ? (
         <>
-          
-            <NavLink onClick={handleLogOut}>Logout</NavLink>
-          
-          
+          <NavLink onClick={handleLogOut}>Logout</NavLink>
         </>
       ) : (
         <>
-          
-            <NavLink to={"/signup"}>Sign Up</NavLink>
-            <NavLink to={"/login"}>Login</NavLink>
-          
-
-          
-          
+          <NavLink to={"/signup"}>Sign Up</NavLink>
+          <NavLink to={"/login"}>Login</NavLink>
         </>
       )}
-      {
-        user?.photoURL && <div
-        className="tooltip  tooltip-bottom "
-        data-tip={user?.displayName}
-      >
-        <img
-          className="rounded-full  ring-4 ring-red-400 hover:ring-teal-600"
-          src={user?.photoURL}
-          style={{ width: "44px", height: "44px" }}
-        />
-      </div>
-      }
+      {user?.photoURL && (
+        <div className="tooltip  tooltip-bottom " data-tip={user?.displayName}>
+          <img
+            className="rounded-full  ring-4 ring-red-400 hover:ring-teal-600"
+            src={user?.photoURL}
+            style={{ width: "44px", height: "44px" }}
+          />
+        </div>
+      )}
     </>
   );
 
-
-    return (
-        <div className="navbar h-24 mb-10 px-6 text-slate-500 rounded-lg mt-4 bg-transparent max-w-screen-xl">
+  return (
+    <div className="navbar h-24 mb-10 px-6 text-slate-500 rounded-lg mt-4 bg-transparent max-w-screen-xl">
       <div className="navbar-start space-x-2">
         {/* <NavLink to={"/"}>
           <img src={websiteLogo} alt="" className="h-20" />
@@ -110,7 +95,9 @@ const handleLogOut = () => {
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex ">
-        <ul className="menu menu-horizontal space-x-6  items-center">{centerNavItems}</ul>
+        <ul className="menu menu-horizontal space-x-6  items-center">
+          {centerNavItems}
+        </ul>
       </div>
       <div className="navbar-end ">
         <ul className="menu menu-horizontal space-x-6 hidden lg:flex items-center">
@@ -144,7 +131,7 @@ const handleLogOut = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Navbar;

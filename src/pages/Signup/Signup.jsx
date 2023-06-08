@@ -39,6 +39,9 @@ const Signup = () => {
                   className="input input-bordered"
                   {...register("name", { required: true })} 
                 />
+                {errors.name?.type === "required" && (
+                  <p className="text-red-800 text-sm">First name is required</p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -51,6 +54,9 @@ const Signup = () => {
                   {...register("email", { required: true })} 
 
                 />
+                {errors.email?.type === "required" && (
+                  <p className="text-red-800 text-sm">Email is required</p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -62,6 +68,9 @@ const Signup = () => {
                   className="input input-bordered"
                   {...register("photo", { required: true })} 
                 />
+                {errors.photo?.type === "required" && (
+                  <p className="text-red-800 text-sm">Photo upload is required</p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -71,9 +80,24 @@ const Signup = () => {
                   type="password"
                   placeholder="********"
                   className="input input-bordered"
-                  {...register("password", { required: true })} 
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
+                  })}
 
                 />
+                {errors.password?.type === "required" && (
+                  <p className="text-red-800 text-sm">Password is required</p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-800 text-sm">Password Too short</p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-800 text-sm">
+                    Password must have a capital letter and a special character
+                  </p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -97,7 +121,7 @@ const Signup = () => {
                 />
               </div>
             </form>
-            <p className="text-center">Already have an account? <Link className="btn btn-ghost btn-xs underline mb-4" to={'/login'}>Sign Up Here!</Link></p>
+            <p className="text-center">Already have an account? <Link className="btn btn-ghost btn-xs underline mb-4" to={'/login'}>Log In Here!</Link></p>
       {/* <p className="text-center pb-3">Back to <Link className="btn btn-ghost btn-xs underline" to={'/'}>Home</Link></p> */}
     {/* <SocialLogin></SocialLogin> */}
           </div>

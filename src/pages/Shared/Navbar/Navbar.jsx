@@ -1,7 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
 
+const {user, logOut} = useAuth()
+
+const handleLogOut = () => {
+  logOut()
+    .then(() => {
+      // refetch()
+      alert("logout successful");
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
 
      // Central Nav Buttons
   const centerNavItems = (
@@ -17,15 +30,54 @@ const Navbar = () => {
   );
 
   // Right Side Nav Buttons
-  const endNavItems = (
-    <>
+  // const endNavItems = (
+  //   <>
           
-            <NavLink to={"/login"}>Login</NavLink>
-            <NavLink to={"/signup"}>Sign Up</NavLink>
-            <NavLink >Log Out</NavLink>
+  //           {user?<>
+  //           <NavLink to={"/login"}>Login</NavLink>
+  //           <NavLink to={"/signup"}>Sign Up</NavLink>
+  //           </>:
+            
+  //           <NavLink onClick={handleLogOut}>Log Out</NavLink>
+
+  //           }
           
 
       
+  //   </>
+  // );
+  const endNavItems = (
+    <>
+      {user?.email ? (
+        <>
+          
+            <NavLink onClick={handleLogOut}>Logout</NavLink>
+          
+          
+        </>
+      ) : (
+        <>
+          
+            <NavLink to={"/signup"}>Sign Up</NavLink>
+            <NavLink to={"/login"}>Login</NavLink>
+          
+
+          
+          
+        </>
+      )}
+      {
+        user?.photoURL && <div
+        className="tooltip  tooltip-bottom "
+        data-tip={user?.displayName}
+      >
+        <img
+          className="rounded-full  ring-4 ring-teal-400 hover:ring-teal-600"
+          src={user?.photoURL}
+          style={{ width: "44px", height: "44px" }}
+        />
+      </div>
+      }
     </>
   );
 

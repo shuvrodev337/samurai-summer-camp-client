@@ -1,33 +1,45 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Signup = () => {
     const [errorMsg,setErrorMsg] = useState('')
+    const {signUp, updateUserProfile, logOut} = useAuth()
+    const navigate = useNavigate()
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => {
-        if (data.password !== data.confirmPassword) {
-            setErrorMsg('Password did not match')
-            return
-        }else{
-            setErrorMsg('')
-        }
-        console.log(data);
-        
+    const onSubmit = (user) => {
+      if (user.password !== user.confirmPassword) {
+        setErrorMsg('Password did not match')
+        return
+    }else{
+        setErrorMsg('')
+    }
+    console.log(user);
+      signUp(user.email, user.password)
+        .then(() => {
+          updateUserProfile(user.name, user.photo)
+            .then(() => {
+              alert('register successfull')
+              navigate("/")
+                
+            })
+            
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
     };
 
     return (
-        <div className="hero min-h-screen bg-base-100 ">
-        <div className="hero-content flex-col lg:flex-row">
-          <div className="text-center lg:text-left">
+        <div className="md:w-1/2 mx-auto">
+        <div className="hero-content flex-col gap-10">
+          <div className="text-center ">
             <h1 className="text-5xl font-bold">Sign Up now!</h1>
-            <p className="py-6">
-              ut assumenda excepturi exercitationem quasi. In deleniti eaque aut
-              repudiandae et a id nisi.
-            </p>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ">
+          <div className="card  w-full  shadow-2xl bg-base-100 ">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">

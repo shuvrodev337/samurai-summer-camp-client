@@ -72,7 +72,7 @@ const handleLogOut = () => {
         data-tip={user?.displayName}
       >
         <img
-          className="rounded-full  ring-4 ring-teal-400 hover:ring-teal-600"
+          className="rounded-full  ring-4 ring-red-400 hover:ring-teal-600"
           src={user?.photoURL}
           style={{ width: "44px", height: "44px" }}
         />

@@ -3,12 +3,14 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SectionTitle from "../../components/sectionTitle";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Signup = () => {
     const [errorMsg,setErrorMsg] = useState('')
     const {signUp, updateUserProfile, logOut} = useAuth()
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register,reset, handleSubmit, formState: { errors } } = useForm();
     
 
     const onSubmit = (user) => {
@@ -23,14 +25,34 @@ const Signup = () => {
         .then(() => {
           updateUserProfile(user.name, user.photo)
             .then(() => {
-              alert('register successfull')
-              navigate("/")
+              const savedUser = { name: user.name, email: user.email, photo: user.photo}
+
+              axios.post('http://localhost:3000/users',savedUser)
+              .then(res=>{
+                console.log(res.data);
+                if (res.data.insertedId) {
+                  reset();
+                  Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'User sign Up successful.',
+                      showConfirmButton: false,
+                      timer: 1500
+                  });
+                  navigate('/');
+                }
+
+              })
+             
                 
             })
             
         })
         .catch((error) => {
-          console.log(error.message);
+          // console.log(error.message);
+          if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+            setErrorMsg("The email address you have entered is already registered!");
+          } 
         });
     };
 

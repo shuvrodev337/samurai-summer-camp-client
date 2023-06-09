@@ -1,18 +1,54 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaTrash, FaUser, FaUserNinja, FaUserShield } from "react-icons/fa";
-// import axios from "axios";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
 
+    // Getting All Users 
     // const [axiosSecure] = useAxiosSecure()
     const {data:users=[],refetch} = useQuery(['users'],async()=>{
-        const res = await fetch('http://localhost:3000/users')
-        return res.json()
 
-        // const res  = await axios.get('/users')
-        // return res.data
+        const res  = await axios.get('http://localhost:3000/users')
+        return res.data
     })
     console.log(users);
+
+// Making A User instructor
+const makeInstructor = user =>{
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `You want to make ${user.name} an instructor?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Do It!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+            fetch(`http://localhost:3000/users/admin/${user._id}`,{
+                method: 'PATCH'
+            })
+            .then(res=>res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire(
+                        `${user.name} has been made Instructor`,
+                        'success'
+                      )  
+                }
+            })
+
+
+
+          
+        }
+      })
+}
+
     return (
         <div className="overflow-x-auto">
         <table className="table table-zebra">
@@ -39,7 +75,7 @@ const AllUsers = () => {
               </td>
               <td className="flex flex-col items-end gap-2 justify-center">
                 <button className="btn btn-xs btn-error"><FaTrash></FaTrash>Delete User</button>
-                <button className="btn btn-xs btn-success "><FaUserNinja></FaUserNinja>Make Instructor</button>
+                <button onClick={()=>makeInstructor(user)} className="btn btn-xs btn-success "><FaUserNinja></FaUserNinja>Make Instructor</button>
                 <button className="btn btn-xs btn-warning "><FaUserShield></FaUserShield>Make Admin</button> 
               
               </td>

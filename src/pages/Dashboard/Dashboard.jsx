@@ -29,7 +29,7 @@ const Dashboard = () => {
                 <NavLink to={"/dashboard/adminhome"}>Admin Home</NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/allusers"}>Manage Users</NavLink>
+                <NavLink to={"/dashboard/manageusers"}>Manage Users</NavLink>
               </li>
             </>
           )}

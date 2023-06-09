@@ -10,6 +10,7 @@ import StudentHome from "../pages/Dashboard/StudentHome";
 import AllUsers from "../pages/Dashboard/AllUsers";
 import AddAClass from "../pages/Dashboard/AddAClass";
 import MyClasses from "../pages/Dashboard/MyClasses";
+import Instructors from "../pages/Instructors/Instructors";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage></HomePage>
+      },
+      {
+        path: "/instructors",
+        element: <Instructors></Instructors>
       },
       {
         path: "/login",

@@ -2,7 +2,7 @@ import SectionTitle from '../../components/sectionTitle';
 
 const InstructorHome = () => {
     return (
-        <div>
+        <div className='w-full'>
             <SectionTitle sectionHeading={'Instructor Home'}></SectionTitle>
             
         </div>

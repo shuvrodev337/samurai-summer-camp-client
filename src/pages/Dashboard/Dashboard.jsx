@@ -1,8 +1,10 @@
 import React from "react";
 import SectionTitle from "../../components/sectionTitle";
 import { NavLink, Outlet } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Dashboard = () => {
+  const user = useAuth()
   const isAdmin = false;
   const isInstructor = true;
   const isStudent = false;
@@ -21,7 +23,7 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 h-full bg-gray-900 text-white">
+        <ul className="menu p-4 w-80 h-full bg-gray-900 text-sky-500">
           {/* Sidebar content here */}
           {isAdmin && (
             <>
@@ -41,7 +43,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/instructorclasses"}>
+                <NavLink to={`/dashboard/instructors/classes`}>
                   My Classes
                 </NavLink>
               </li>

@@ -40,8 +40,9 @@ const {user} = useAuth()
                     'success'
                   )
                 
-                //  TODO : uncomment below line
-                // navigate('/dasboard/instructor/myclasses')
+                
+                navigate(`/dashboard/instructors/classes`)
+
                 
               }
 
@@ -74,7 +75,7 @@ const {user} = useAuth()
                   type="text"
                   placeholder="Class Name"
                   className="input input-bordered"
-                  {...register("calssName", { required: true })} 
+                  {...register("clssName", { required: true })} 
                 />
                 {errors.calssName?.type === "required" && (
                   <p className="text-red-800 text-sm">Class name is required</p>

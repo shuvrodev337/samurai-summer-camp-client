@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const isAdmin = false
+  const isAdmin = true
   const isInstructor = false
   const isStudent = false
   
@@ -37,10 +37,11 @@ const Navbar = () => {
     <>
       <NavLink to={"/"}>Home</NavLink>
 
+      <NavLink to={"/"}>Instructors</NavLink>
       <NavLink to={"/"}>Classes</NavLink>
-      {isAdmin && <NavLink to={"/dashboard/adminhome"}>Admin Dashboard</NavLink>}
-      {isInstructor && <NavLink to={"/dashboard/instructorhome"}>Instructor Dashboard</NavLink>}
-      {isStudent && <NavLink to={"/dashboard/studenthome"}>Student Dashboard</NavLink>}
+      {isAdmin && <NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>}
+      {isInstructor && <NavLink to={"/dashboard/instructorhome"}>Dashboard</NavLink>}
+      {isStudent && <NavLink to={"/dashboard/studenthome"}>Dashboard</NavLink>}
 
     </>
   );

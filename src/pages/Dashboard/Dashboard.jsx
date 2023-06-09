@@ -3,8 +3,8 @@ import SectionTitle from "../../components/sectionTitle";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  const isAdmin = true;
-  const isInstructor = false;
+  const isAdmin = false;
+  const isInstructor = true;
   const isStudent = false;
   return (
     <div className="drawer lg:drawer-open">
@@ -43,6 +43,11 @@ const Dashboard = () => {
               <li>
                 <NavLink to={"/dashboard/instructorclasses"}>
                   My Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/addaclass"}>
+                  Add a Class
                 </NavLink>
               </li>
             </>

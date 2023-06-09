@@ -8,6 +8,7 @@ import InstructorHome from "../pages/Dashboard/InstructorHome";
 import AdminHome from "../pages/Dashboard/AdminHome";
 import StudentHome from "../pages/Dashboard/StudentHome";
 import AllUsers from "../pages/Dashboard/AllUsers";
+import AddAClass from "../pages/Dashboard/AddAClass";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manageusers",
         element:<AllUsers></AllUsers>
+      },
+      {
+        path: "/dashboard/instructorhome",
+        element:<InstructorHome></InstructorHome>
+      },
+      {
+        path: "/dashboard/addaclass",
+        element:<AddAClass></AddAClass>
       },
       
       

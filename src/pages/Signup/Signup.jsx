@@ -26,6 +26,7 @@ const Signup = () => {
         .then(() => {
           updateUserProfile(user.name, user.photo)
             .then(() => {
+              //  TODO : check that defining role here is necessary or not
               const savedUser = { name: user.name, email: user.email, photo: user.photo, role: 'student'}
 
               axios.post('http://localhost:3000/users',savedUser)

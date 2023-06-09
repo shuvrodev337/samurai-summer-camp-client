@@ -1,15 +1,57 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../components/sectionTitle";
 import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const AddAClass = () => {
+    const navigate = useNavigate()
 const {user} = useAuth()
     const { register,reset, handleSubmit, formState: { errors } } = useForm();
     
     const onSubmit = (addedClass) => {
         console.log(addedClass);
-     
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You will add ${addedClass.calssName} class`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Add it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+            //   const newClass = { className: addedClass., email: user.email, photo: user.photo, role: 'student'}
+            addedClass.availableSeats = parseFloat(addedClass.availableSeats)
+            addedClass.price = parseFloat(addedClass.price)
+            // addedClass.instructorId = user._id
+            console.log(addedClass);
+            //  TODO Use Axios Secure Here
+            axios.post('http://localhost:3000/classes',addedClass)
+            .then(res=>{
+              console.log(res.data);
+              if (res.data.insertedId) {
+                reset();
+                Swal.fire(
+                    'Added!',
+                    'Your class has been added.',
+                    'success'
+                  )
+                
+                //  TODO : uncomment below line
+                // navigate('/dasboard/instructor/myclasses')
+                
+              }
+
+            })
+                
+
+
+            
+            }
+          })
         
         
                
@@ -59,7 +101,7 @@ const {user} = useAuth()
                   readOnly
                   className="input input-bordered"
                   defaultValue={user?.email}
-                  {...register("email", { required: true })} 
+                  {...register("instructorEmail", { required: true })} 
 
                 />
                 

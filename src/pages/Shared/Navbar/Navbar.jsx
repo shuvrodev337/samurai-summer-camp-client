@@ -38,7 +38,7 @@ const Navbar = () => {
       <NavLink to={"/"}>Home</NavLink>
 
       <NavLink to={"/instructors"}>Instructors</NavLink>
-      <NavLink to={"/"}>Classes</NavLink>
+      <NavLink to={"/classes/approved"}>Classes</NavLink>
       {isAdmin && <NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>}
       {isInstructor && <NavLink to={"/dashboard/instructorhome"}>Dashboard</NavLink>}
       {isStudent && <NavLink to={"/dashboard/studenthome"}>Dashboard</NavLink>}
@@ -76,7 +76,7 @@ const Navbar = () => {
       {user?.photoURL && (
         <div className="tooltip  tooltip-bottom " data-tip={user?.displayName}>
           <img
-            className="rounded-full  ring-4 ring-red-400 hover:ring-teal-600"
+            className="rounded-full  ring-4 ring-sky-500 hover:ring-sky-600"
             src={user?.photoURL}
             style={{ width: "44px", height: "44px" }}
           />
@@ -124,7 +124,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-emerald-300 rounded-box w-52 items-center"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-800 text-gray-100 rounded-box w-52 items-center gap-2"
           >
             {centerNavItems}
             {endNavItems}

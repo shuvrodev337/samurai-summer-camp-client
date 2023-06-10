@@ -4,27 +4,27 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 const ClassCard = ({singleClass,refetch}) => {
-    const isAdmin = true
+    const isAdmin = false
+    const isInstructor = true
+    const isStudent = false
+
     const {_id,className,instructorEmail,classPhoto,instructorName,availableSeats,price,instructorId,status,enrolledStudents} = singleClass
     const { register,reset, handleSubmit, formState: { errors } } = useForm();
 
-      const [isOpen, setIsOpen] = useState(false);
+      
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
 
-    //  Approve , deny Functionality
-
-    // const [disabledInstructorBtn,setDisabledInstructorBtn] = useState(false)
+    //-----Approve, Deny, Feedback Functionality----//
     const [disable,setDisable] = useState(false)
-
-
-
+    const [isOpen, setIsOpen] = useState(false);
+    const openModal = () => {
+      setIsOpen(true);
+    };
+  
+    const closeModal = () => {
+      setIsOpen(false);
+    };
 // Approve class
 const approveClass = classToBeApproved =>{
 
@@ -118,11 +118,7 @@ const denyClass = classToBeDenied =>{
         }
       })
 }
-
-// Send FeedBack
-// const sendFeedBack =(singleClass)=>{
-
-// }
+// Send Feedback
 const onSubmit = (data)=>{
 console.log(data.feedback);
 console.log(instructorEmail);
@@ -144,15 +140,15 @@ axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedb
 })
 
 }
-
+//--------------------------------------------------//
 
     return (
-        <div className="card lg:card-side bg-slate-100 shadow-xl my-14 ">
+        <div className="card lg:card-side bg-slate-100 shadow-xl my-14 items-center text-center">
       <figure className="md:w-1/2">
         <img src={classPhoto} alt="Album" className="w-56" />
       </figure>
       <div className="card-body text-gray-900 md:w-1/2">
-        <h2 className="font-bold text-2xl text-left mb-10">Class Name: {className}</h2>
+        <h2 className="font-bold text-2xl text-center mb-10">Class Name: {className}</h2>
         <p>
           <span className="font-semibold text-lg ">Instructor Name: </span>
           {instructorName}
@@ -168,30 +164,31 @@ axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedb
 
         }
         <p>
-          <span className="font-semibold text-lg ">Price : $</span>
-          {price}
-        </p>
-        <p>
-          <span className="font-semibold text-lg ">Enrolled students: </span>
-          {enrolledStudents?enrolledStudents: '0'}
-        </p>
-        <p>
           <span className="font-semibold text-lg ">Available Seats: </span>
           {availableSeats}
         </p>
         <p>
+          <span className="font-semibold text-lg ">Price : $</span>
+          {price}
+        </p>
+        {isInstructor && <p>
+          <span className="font-semibold text-lg ">Enrolled students: </span>
+          { enrolledStudents ? enrolledStudents : '0'}
+        </p>}
+        
+        {(isAdmin || isInstructor) && <p>
           <span className="font-semibold text-lg ">Status</span>:{" "}
           {status}
-        </p>
+        </p>}
         {
             isAdmin && <>
-            <div className="flex flex-col md:flex md:flex-row gap-2 items-center">
+            <div className="flex flex-col md:flex md:flex-row gap-2 items-center justify-center">
             <button disabled={disable || singleClass.status !== 'pending'} onClick={()=>approveClass(singleClass)} className="btn btn-sm btn-success">Approve</button>
             <button disabled={disable || singleClass.status !== 'pending'} onClick={()=>denyClass(singleClass)} className="btn btn-sm btn-warning">Deny</button>
             {/* <button onClick={()=>sendFeedBack(singleClass)} className="btn btn-sm btn-info">Send Feedback</button> */}
             <div>
       <button
-        className="btn btn-xs btn-info"
+        className="btn btn-sm btn-info"
         onClick={openModal}
       >
         Send Feedback
@@ -233,6 +230,11 @@ axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedb
             </>
         }
        
+
+       
+       <button disabled={isAdmin || isInstructor} className="btn btn-info w-1/2 mt-4 rounded-full mx-auto">Select</button>
+
+       
         
       </div>
     </div>
@@ -241,3 +243,16 @@ axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedb
 };
 
 export default ClassCard;
+
+
+
+
+// Image
+// Name
+// Instructor name
+// Available seats
+// Price
+// Select Button. If the user is not logged in, then tell the user to log in before selecting the course. This button will be disabled if:
+// Available seats are 0
+// Logged in as admin/instructor
+// The class card background will be red if the available seats are 0.

@@ -2,11 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 const ClassCard = ({singleClass,refetch}) => {
+  const{user} = useAuth()
+  const location = useLocation()
+  const navigate = useNavigate()
     const isAdmin = false
-    const isInstructor = true
-    const isStudent = false
+    const isInstructor = false
+    const isStudent = true
 
     const {_id,className,instructorEmail,classPhoto,instructorName,availableSeats,price,instructorId,status,enrolledStudents} = singleClass
     const { register,reset, handleSubmit, formState: { errors } } = useForm();
@@ -142,13 +148,72 @@ axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedb
 }
 //--------------------------------------------------//
 
+// Handle Select Class
+const handleSelectClass = () =>{
+  if (!user) {
+    Swal.fire({
+      title: 'You have to Log In First!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Log In'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/login',{state:{from:location}})
+      }
+    })
+    
+  }else{
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `${className} will be added to your selected classes`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Add to My Classes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // navigate('/')
+
+        const selectedClass = { studentName: user?.displayName, studentEmail: user?.email, studentId: user?._id,className,instructorName,instructorEmail,instructorId}
+                axios.post('http://localhost:3000/users/classes',selectedClass)
+                .then(res=>{
+                  if (res.data.insertedId) {
+                    
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Class Added ',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    
+                  
+                    
+                  }
+                    // navigate(from, { replace: true });
+  
+                })
+
+
+      }
+    })
+  }
+
+  
+
+}
+
+
     return (
-        <div className="card lg:card-side bg-slate-100 shadow-xl my-14 items-center text-center">
+        <div className={`card lg:card-side ${availableSeats == 0 ?'bg-red-900' : 'bg-slate-100'}  shadow-xl my-14 items-center text-left`}>
       <figure className="md:w-1/2">
         <img src={classPhoto} alt="Album" className="w-56" />
       </figure>
-      <div className="card-body text-gray-900 md:w-1/2">
-        <h2 className="font-bold text-2xl text-center mb-10">Class Name: {className}</h2>
+      <div className={`card-body ${availableSeats == 0 ?'text-white' : 'text-gray-900'}  md:w-1/2`}>
+        <h2 className="font-bold text-2xl  mb-10">Class Name: {className}</h2>
         <p>
           <span className="font-semibold text-lg ">Instructor Name: </span>
           {instructorName}
@@ -232,7 +297,7 @@ axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedb
        
 
        
-       <button disabled={isAdmin || isInstructor} className="btn btn-info w-1/2 mt-4 rounded-full mx-auto">Select</button>
+       <button onClick={handleSelectClass} disabled={isAdmin || isInstructor ||( availableSeats == 0)} className="btn btn-info w-1/2 mt-4 rounded-full mx-auto">Select</button>
 
        
         
@@ -246,13 +311,3 @@ export default ClassCard;
 
 
 
-
-// Image
-// Name
-// Instructor name
-// Available seats
-// Price
-// Select Button. If the user is not logged in, then tell the user to log in before selecting the course. This button will be disabled if:
-// Available seats are 0
-// Logged in as admin/instructor
-// The class card background will be red if the available seats are 0.

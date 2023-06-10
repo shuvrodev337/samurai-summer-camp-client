@@ -65,7 +65,7 @@ const Navbar = () => {
     <>
       {user?.email ? (
         <>
-          <NavLink onClick={handleLogOut}>Logout</NavLink>
+          <button onClick={handleLogOut}>Logout</button>
         </>
       ) : (
         <>

@@ -37,9 +37,9 @@ const Signup = () => {
                   Swal.fire({
                       position: 'center',
                       icon: 'success',
-                      title: 'User sign Up successful.PLease Login',
+                      title: 'Sign Up Successful! PLease Login Now',
                       showConfirmButton: false,
-                      timer: 1500
+                      timer: 2000
                   });
                   
                   //  TODO : uncomment logout section

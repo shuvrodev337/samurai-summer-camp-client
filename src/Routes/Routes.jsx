@@ -13,6 +13,7 @@ import MyClasses from "../pages/Dashboard/MyClasses";
 import Instructors from "../pages/Instructors/Instructors";
 import ManageClasses from "../pages/Dashboard/ManageClasses";
 import ApprovedClasses from "../pages/ApprovedClasses/ApprovedClasses";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {

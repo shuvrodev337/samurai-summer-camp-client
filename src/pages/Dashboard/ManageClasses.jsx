@@ -18,7 +18,7 @@ const {loading} = useAuth()
             <SectionTitle sectionHeading={`Manage All ${classes.length} Classes`}></SectionTitle>
             <div className="w-9/12 mx-auto">
                 {
-                    classes.map(singleClass =><ClassCard key={singleClass._id} singleClass={singleClass}></ClassCard>)
+                    classes.map(singleClass =><ClassCard key={singleClass._id} singleClass={singleClass} refetch={refetch}></ClassCard>)
                 }
             </div>
         </div>

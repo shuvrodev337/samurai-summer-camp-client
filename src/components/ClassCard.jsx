@@ -177,23 +177,23 @@ const handleSelectClass = () =>{
       if (result.isConfirmed) {
         // navigate('/')
 
-        const selectedClass = { studentName: user?.displayName, studentEmail: user?.email, studentId: user?._id,className,instructorName,instructorEmail,instructorId}
+        const selectedClass = { studentName: user?.displayName, studentEmail: user?.email, classId:_id,className,instructorName,instructorEmail,instructorId,classPhoto,price,availableSeats}
                 axios.post('http://localhost:3000/users/classes',selectedClass)
                 .then(res=>{
                   if (res.data.insertedId) {
                     
                     Swal.fire({
-                        position: 'center',
+                        position: 'top-end',
                         icon: 'success',
                         title: 'Class Added ',
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 2000
                     });
                     
                   
+                    navigate('/dashboard/student/classes');
                     
                   }
-                    // navigate(from, { replace: true });
   
                 })
 

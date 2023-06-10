@@ -5,9 +5,9 @@ import useAuth from "../../hooks/useAuth";
 
 const Dashboard = () => {
   const user = useAuth()
-  const isAdmin = true;
+  const isAdmin = false;
   const isInstructor = false;
-  const isStudent = false;
+  const isStudent = true;
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -63,7 +63,7 @@ const Dashboard = () => {
                 <NavLink to={"/dashboard/studenthome"}>Student Home</NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/studentclasses"}>My Classes</NavLink>
+                <NavLink to={"/dashboard/student/classes"}>My Classes</NavLink>
               </li>
               <li>
                 <NavLink to={"/dashboard/payment"}>Payment History</NavLink>

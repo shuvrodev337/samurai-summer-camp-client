@@ -14,6 +14,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import ManageClasses from "../pages/Dashboard/ManageClasses";
 import ApprovedClasses from "../pages/ApprovedClasses/ApprovedClasses";
 import PrivateRoute from "./PrivateRoute";
+import SelectedClasses from "../pages/Dashboard/SelectedClasses";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/studenthome",
         element:<StudentHome></StudentHome>
+      },
+      {
+        path: "/dashboard/student/classes",
+        element:<SelectedClasses></SelectedClasses>
       },
       {
         path: "/dashboard/instructorhome",

@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { useParams } from "react-router-dom";
 import SectionTitle from "../../components/sectionTitle";
 import ClassCard from "../../components/ClassCard";
+import ClassesRow from "./ClassesRow";
 
 const MyClasses = () => {
 const {user,loading} = useAuth()
@@ -25,13 +26,48 @@ const {user,loading} = useAuth()
         <div className="w-full">
             <SectionTitle sectionHeading={'My Classes'}></SectionTitle>
 
-            <div className="w-9/12 mx-auto">
+            {/* <div className="w-9/12 mx-auto">
 
 
             {
                 classes.map((singleClass,index)=><ClassCard key={singleClass._id} singleClass={singleClass} index={index}></ClassCard>)
             }
-            </div>
+
+            {
+
+
+            }
+
+            </div> */}
+
+            <div className="overflow-x-auto  mx-auto">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Class Name</th>
+              <th>Available Seats</th>
+              <th className="text-center">Price</th>
+              {/* TODO add enrolled students collumn */}
+              <th>Status</th>
+              <th>Feedback</th>
+              {/* <th className="text-right">Action</th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {
+              classes.map((singleClass,index)=> <ClassesRow key={singleClass._id} singleClass={singleClass} index={index}></ClassesRow>)
+            }
+            
+            
+          </tbody>
+        </table>
+      </div>
+
+
+            
 
 
 

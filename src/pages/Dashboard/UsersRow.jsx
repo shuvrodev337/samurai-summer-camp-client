@@ -91,6 +91,7 @@ const makeAdmin = user =>{
 }
 
     return (
+      //TODO remove key from here and test
         <tr key={user._id}>
                   <th>{index + 1}</th>
                   <td>{user.name}</td>

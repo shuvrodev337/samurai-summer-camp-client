@@ -96,10 +96,19 @@ const denyClass = classToBeDenied =>{
                     setDisable(true)
                     refetch()
 
-                    Swal.fire(
-                        `${classToBeDenied.className} has been denied`,
-                        'success'
-                      )  
+                    Swal.fire({
+                      title: `${classToBeDenied.className} class is denied`,
+                      text: "Do you want to give a feedback to instructor?",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, I want to send Feedback!'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        openModal()
+                      }
+                    })
                 }
             })
 
@@ -122,8 +131,15 @@ closeModal()
 axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedback})
 .then(res=>{
   if (res.data.modifiedCount > 0) {
-    console.log(res.data);
-    alert('Feedback sent')
+    // console.log(res.data);
+    // alert('Feedback sent')
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Feedback sent',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 })
 

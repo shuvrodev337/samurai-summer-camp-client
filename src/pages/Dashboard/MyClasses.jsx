@@ -7,7 +7,6 @@ import ClassCard from "../../components/ClassCard";
 
 const MyClasses = () => {
 const {user,loading} = useAuth()
-// const instructorEmail = useParams()
     // TODO Make a hook that load instructor specific classes, use axios secure there.
     const {data:classes=[],refetch} = useQuery({
         queryKey:['classes',user?.email],
@@ -19,11 +18,7 @@ const {user,loading} = useAuth()
         }
     
     })
-    // const {data:classes=[],refetch} = useQuery(['classes',user?.email],async()=>{
-        
-    //     const res  = await axios.get(`http://localhost:3000/instructors/classes?email=${user?.email}`)
-    //     return res.data
-    // })
+    
     console.log(classes);
 
     return (

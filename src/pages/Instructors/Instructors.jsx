@@ -6,10 +6,10 @@ import useAuth from "../../hooks/useAuth";
 const Instructors = () => {
     const {loading } = useAuth()
     const {data:instructors=[],refetch} = useQuery(['instructors'],async()=>{
-
+// test enabled here
         const res  = await axios.get('http://localhost:3000/instructors')
         return res.data
-    },{enabled: !loading})
+    })
     console.log(instructors);
 
     return (

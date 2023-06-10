@@ -5,8 +5,8 @@ import useAuth from "../../hooks/useAuth";
 
 const Dashboard = () => {
   const user = useAuth()
-  const isAdmin = false;
-  const isInstructor = true;
+  const isAdmin = true;
+  const isInstructor = false;
   const isStudent = false;
   return (
     <div className="drawer lg:drawer-open">
@@ -32,6 +32,9 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to={"/dashboard/manageusers"}>Manage Users</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/manageclasses"}>Manage Classes</NavLink>
               </li>
             </>
           )}

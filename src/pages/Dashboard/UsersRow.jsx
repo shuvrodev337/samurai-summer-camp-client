@@ -50,7 +50,7 @@ const makeInstructor = user =>{
         }
       })
 }
-// Making Any User instructor
+// Making Any User Admin
 const makeAdmin = user =>{
     if (user.role === 'admin') {
         return;

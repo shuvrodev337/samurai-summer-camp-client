@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Swal from "sweetalert2";
 
 const ClassCard = ({singleClass,refetch}) => {
@@ -10,7 +11,7 @@ const ClassCard = ({singleClass,refetch}) => {
     //  Approve , deny Functionality
 
     // const [disabledInstructorBtn,setDisabledInstructorBtn] = useState(false)
-    // const [disabledAdminBtn,setDisabledAdminBtn] = useState(false)
+    const [disable,setDisable] = useState(false)
 
 
 
@@ -40,7 +41,7 @@ const approveClass = classToBeApproved =>{
                 if (data.modifiedCount > 0) {
                     // setDisabledInstructorBtn(true)
                     // setDisabledAdminBtn(false)
-                    // setDisable(true)
+                    setDisable(true)
                     refetch()
 
                     Swal.fire(
@@ -82,7 +83,7 @@ const denyClass = classToBeDenied =>{
                 if (data.modifiedCount > 0) {
                     // setDisabledInstructorBtn(true)
                     // setDisabledAdminBtn(false)
-                    // setDisable(true)
+                    setDisable(true)
                     refetch()
 
                     Swal.fire(
@@ -141,8 +142,8 @@ const denyClass = classToBeDenied =>{
         {
             isAdmin && <>
             <div className="flex flex-col md:flex md:flex-row gap-2">
-            <button onClick={()=>approveClass(singleClass)} className="btn btn-sm btn-success">Approve</button>
-            <button onClick={()=>denyClass(singleClass)} className="btn btn-sm btn-warning">Deny</button>
+            <button disabled={disable || singleClass.status !== 'pending'} onClick={()=>approveClass(singleClass)} className="btn btn-sm btn-success">Approve</button>
+            <button disabled={disable || singleClass.status !== 'pending'} onClick={()=>denyClass(singleClass)} className="btn btn-sm btn-warning">Deny</button>
             <button className="btn btn-sm btn-info">Send Feedback</button>
             </div>
             </>

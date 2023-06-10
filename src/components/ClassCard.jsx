@@ -1,10 +1,11 @@
+import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
 const ClassCard = ({singleClass,refetch}) => {
     const isAdmin = true
-    const {className,instructorEmail,classPhoto,instructorName,availableSeats,price,instructorId,status,enrolledStudents} = singleClass
+    const {_id,className,instructorEmail,classPhoto,instructorName,availableSeats,price,instructorId,status,enrolledStudents} = singleClass
     const { register,reset, handleSubmit, formState: { errors } } = useForm();
 
       const [isOpen, setIsOpen] = useState(false);
@@ -113,10 +114,19 @@ const denyClass = classToBeDenied =>{
 // const sendFeedBack =(singleClass)=>{
 
 // }
-const onSubmit = (feedback)=>{
-console.log(feedback);
-console.log(className);
+const onSubmit = (data)=>{
+console.log(data.feedback);
+console.log(instructorEmail);
 closeModal()
+
+axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedback})
+.then(res=>{
+  if (res.data.modifiedCount > 0) {
+    console.log(res.data);
+    alert('Feedback sent')
+  }
+})
+
 }
 
 
@@ -159,17 +169,13 @@ closeModal()
         </p>
         {
             isAdmin && <>
-            <div className="flex flex-col md:flex md:flex-row gap-2">
+            <div className="flex flex-col md:flex md:flex-row gap-2 items-center">
             <button disabled={disable || singleClass.status !== 'pending'} onClick={()=>approveClass(singleClass)} className="btn btn-sm btn-success">Approve</button>
             <button disabled={disable || singleClass.status !== 'pending'} onClick={()=>denyClass(singleClass)} className="btn btn-sm btn-warning">Deny</button>
             {/* <button onClick={()=>sendFeedBack(singleClass)} className="btn btn-sm btn-info">Send Feedback</button> */}
-
-            </div>
-            </>
-        }
-        <div>
+            <div>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="btn btn-xs btn-info"
         onClick={openModal}
       >
         Send Feedback
@@ -181,10 +187,13 @@ closeModal()
           <div className="fixed inset-0 bg-black opacity-75"></div>
           <div className="bg-white p-8 w-1/2 mx-auto rounded-lg z-50">
             <h2 className="text-xl font-semibold mb-4">Send Feedback to Instructor</h2>
-            {/* <p>Modal body text goes here...</p> */}
+            <p className="mb-2 text-gray-500">Approved or denied reason...?</p>
             <form className="form-control" onSubmit={handleSubmit(onSubmit)}>
             
-          <textarea className="textarea textarea-info" placeholder="Feedback"></textarea>
+          <textarea {...register("feedback", { required: true })} className="textarea textarea-info" placeholder="Feedback"></textarea>
+          {errors.feedback?.type === "required" && (
+                  <p className="text-red-800 text-sm">Can not submit without feedback!</p>
+                )}
           <div className="flex gap-2 justify-end">
        
             
@@ -203,6 +212,11 @@ closeModal()
         </div>
       )}
     </div>
+
+            </div>
+            </>
+        }
+       
         
       </div>
     </div>

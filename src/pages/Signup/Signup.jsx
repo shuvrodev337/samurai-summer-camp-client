@@ -8,12 +8,15 @@ import Swal from "sweetalert2";
 import SocialLogins from "../../components/SocialLogins";
 import { Helmet } from "react-helmet-async";
 
+
+const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
+
 const Signup = () => {
     const [errorMsg,setErrorMsg] = useState('')
     const {signUp, updateUserProfile, logOut} = useAuth()
     const navigate = useNavigate()
     const { register,reset, handleSubmit, formState: { errors } } = useForm();
-    
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
     const onSubmit = (user) => {
       if (user.password !== user.confirmPassword) {
@@ -23,12 +26,26 @@ const Signup = () => {
         setErrorMsg('')
     }
     console.log(user);
+// Image Upload
+const formData = new FormData();
+formData.append("image", user.photo[0]);
+
+
       signUp(user.email, user.password)
         .then(() => {
-          updateUserProfile(user.name, user.photo)
+          fetch(img_hosting_url, {
+            method: "POST",
+            body: formData,
+          })
+          .then(res=>res.json())
+          .then(imgResponse=>{
+          if (imgResponse.success) {
+            const imgURL = imgResponse.data.display_url;
+            
+            updateUserProfile(user.name,imgURL)
             .then(() => {
               //  TODO : check that defining role here is necessary or not
-              const savedUser = { name: user.name, email: user.email, photo: user.photo, role: 'student'}
+              const savedUser = { name: user.name, email: user.email, photo: imgURL, role: 'student'}
 
               axios.post('http://localhost:3000/users',savedUser)
               .then(res=>{
@@ -54,6 +71,12 @@ const Signup = () => {
              
                 
             })
+
+
+
+
+          }
+          })
             
         })
         .catch((error) => {
@@ -109,13 +132,13 @@ const Signup = () => {
                   <span className="label-text">Upload Your Photo</span>
                 </label>
                 <input
-                  type="text"
+                  type="file"
                   placeholder="Your Photo"
-                  className="input input-bordered"
+                  className="file-input file-input-bordered file-input-accent w-full max-w-xs"
                   {...register("photo", { required: true })} 
                 />
                 {errors.photo?.type === "required" && (
-                  <p className="text-red-800 text-sm">Photo upload is required</p>
+                  <p className="text-red-800 text-sm my-1">Photo upload is required</p>
                 )}
               </div>
               <div className="form-control">
@@ -178,3 +201,37 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
+// signup.then er { er vitor}
+
+
+// updateUserProfile(user.name, user.photo)
+//             .then(() => {
+//               //  TODO : check that defining role here is necessary or not
+//               const savedUser = { name: user.name, email: user.email, photo: user.photo, role: 'student'}
+
+//               axios.post('http://localhost:3000/users',savedUser)
+//               .then(res=>{
+//                 console.log(res.data);
+//                 if (res.data.insertedId) {
+//                   reset();
+//                   Swal.fire({
+//                       position: 'center',
+//                       icon: 'success',
+//                       title: 'Sign Up Successful! PLease Login Now',
+//                       showConfirmButton: false,
+//                       timer: 2000
+//                   });
+                  
+//                   //  TODO : uncomment logout section
+//                   // logOut().then(() => {
+//                   //   navigate("/login");
+//                   // });
+                  
+//                 }
+
+//               })
+             
+                
+//             })

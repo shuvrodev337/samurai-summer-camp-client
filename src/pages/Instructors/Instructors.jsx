@@ -12,7 +12,7 @@ const Instructors = () => {
         const res  = await axios.get('http://localhost:3000/instructors')
         return res.data
     })
-    console.log(instructors);
+    // console.log(instructors);
 
     return (
            <>

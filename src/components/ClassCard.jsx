@@ -46,7 +46,7 @@ const approveClass = classToBeApproved =>{
 
     Swal.fire({
         title: 'Are you sure?',
-        text: `You want to approve ${classToBeApproved.className} class?`,
+        text: `You want to approve ${classToBeApproved?.className} class?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -64,7 +64,7 @@ const approveClass = classToBeApproved =>{
                     refetch()
 
                     Swal.fire(
-                        `${classToBeApproved.className} has been approved`,
+                        `${classToBeApproved?.className} Has been Approved`,
                         'success'
                       )  
                 }
@@ -211,7 +211,7 @@ const handleSelectClass = () =>{
     return (
         <div className={`card lg:card-side ${availableSeats == 0 ?'bg-red-500' : 'bg-slate-100'}  shadow-xl my-14 items-center text-left`}>
       <figure className="md:w-1/2">
-        <img src={classPhoto} alt="Album" className="w-56" />
+        <img src={classPhoto} alt="Album" className="w-80 rounded" />
       </figure>
       <div className={`card-body ${availableSeats == 0 ?'text-white' : 'text-gray-900'}  md:w-1/2`}>
         <h2 className="font-bold text-2xl  mb-10">Class Name: {className}</h2>

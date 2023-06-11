@@ -21,7 +21,7 @@ const {user,loading} = useAuth()
     
     })
     
-    console.log(classes);
+    // console.log(classes);
 
     return (
         <div className="w-full">

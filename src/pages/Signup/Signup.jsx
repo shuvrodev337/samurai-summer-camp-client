@@ -26,7 +26,7 @@ const Signup = () => {
         setErrorMsg('')
     }
     console.log(user);
-// Image Upload
+
 const formData = new FormData();
 formData.append("image", user.photo[0]);
 
@@ -36,12 +36,13 @@ formData.append("image", user.photo[0]);
           fetch(img_hosting_url, {
             method: "POST",
             body: formData,
+            mode:'no-cors'
           })
           .then(res=>res.json())
           .then(imgResponse=>{
           if (imgResponse.success) {
             const imgURL = imgResponse.data.display_url;
-            
+            console.log(user.name,imgURL);
             updateUserProfile(user.name,imgURL)
             .then(() => {
               //  TODO : check that defining role here is necessary or not

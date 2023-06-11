@@ -1,14 +1,17 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
+import TopSlider from "../TopSlider/TopSlider";
+import PopularClasses from "../PopularClasses/PopularClasses";
 
 const HomePage = () => {
-    return (
-        <div>
-            <Helmet>
+  return (
+    <div>
+      <Helmet>
         <title>Samurai Summer Camp | Home</title>
       </Helmet>
-            <h2 className="text-2xl">this is home page</h2>
-        </div>
-    );
+      <TopSlider></TopSlider>
+      <PopularClasses></PopularClasses>
+    </div>
+  );
 };
 
 export default HomePage;

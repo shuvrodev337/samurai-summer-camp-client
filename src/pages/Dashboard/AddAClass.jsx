@@ -4,10 +4,12 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddAClass = () => {
     const navigate = useNavigate()
 const {user} = useAuth()
+const [axiosSecure]= useAxiosSecure()
     const { register,reset, handleSubmit, formState: { errors } } = useForm();
     
     const onSubmit = (addedClass) => {
@@ -29,9 +31,9 @@ const {user} = useAuth()
             // addedClass.instructorId = user._id
             console.log(addedClass);
             //  TODO Use Axios Secure Here
-            axios.post('http://localhost:3000/classes',addedClass)
+            axiosSecure.post('/classes',addedClass)
             .then(res=>{
-              console.log(res.data);
+              // console.log(res.data);
               if (res.data.insertedId) {
                 reset();
                 Swal.fire(

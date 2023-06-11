@@ -4,10 +4,13 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 const ClassCard = ({singleClass,refetch}) => {
   const{user} = useAuth()
+const [axiosSecure]= useAxiosSecure()
+
   const location = useLocation()
   const navigate = useNavigate()
     const isAdmin = true
@@ -49,12 +52,9 @@ const approveClass = classToBeApproved =>{
       }).then((result) => {
         if (result.isConfirmed) {
 
-            fetch(`http://localhost:3000/classes/approved/${classToBeApproved._id}`,{
-                method: 'PATCH'
-            })
-            .then(res=>res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
+          axiosSecure.patch(`/classes/approved/${classToBeApproved._id}`)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
                     // setDisabledInstructorBtn(true)
                     // setDisabledAdminBtn(false)
                     setDisable(true)
@@ -91,12 +91,9 @@ const denyClass = classToBeDenied =>{
       }).then((result) => {
         if (result.isConfirmed) {
 
-            fetch(`http://localhost:3000/classes/denied/${classToBeDenied._id}`,{
-                method: 'PATCH'
-            })
-            .then(res=>res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
+            axiosSecure.patch(`/classes/denied/${classToBeDenied._id}`,)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
                     // setDisabledInstructorBtn(true)
                     // setDisabledAdminBtn(false)
                     setDisable(true)
@@ -130,7 +127,7 @@ console.log(data.feedback);
 console.log(instructorEmail);
 closeModal()
 
-axios.patch(`http://localhost:3000/classes/feedback/${_id}`,{feedback:data.feedback})
+axiosSecure.patch(`/classes/feedback/${_id}`,{feedback:data.feedback})
 .then(res=>{
   if (res.data.modifiedCount > 0) {
     // console.log(res.data);
@@ -178,7 +175,7 @@ const handleSelectClass = () =>{
         // navigate('/')
 
         const selectedClass = { studentName: user?.displayName, studentEmail: user?.email, classId:_id,className,instructorName,instructorEmail,instructorId,classPhoto,price,availableSeats}
-                axios.post('http://localhost:3000/users/classes',selectedClass)
+                axiosSecure.post('/users/classes',selectedClass)
                 .then(res=>{
                   if (res.data.insertedId) {
                     

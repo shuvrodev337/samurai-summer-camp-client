@@ -2,7 +2,10 @@ import {  FaUser, FaUserNinja, FaUserShield } from "react-icons/fa";
 // import axios from "axios";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const UsersRow = ({user, index,refetch}) => {
+  const [axiosSecure] = useAxiosSecure();
+
     const [disabledInstructorBtn,setDisabledInstructorBtn] = useState(false)
     const [disabledAdminBtn,setDisabledAdminBtn] = useState(false)
 
@@ -26,22 +29,38 @@ const makeInstructor = user =>{
       }).then((result) => {
         if (result.isConfirmed) {
 
-            fetch(`http://localhost:3000/users/instructor/${user._id}`,{
-                method: 'PATCH'
-            })
-            .then(res=>res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
-                    setDisabledInstructorBtn(true)
-                    setDisabledAdminBtn(false)
-                    // setDisable(true)
-                    refetch()
+            // fetch(`http://localhost:3000/users/instructor/${user._id}`,{
+            //     method: 'PATCH'
+            // })
+            // .then(res=>res.json())
+            // .then(data => {
+            //     if (data.modifiedCount > 0) {
+            //         setDisabledInstructorBtn(true)
+            //         setDisabledAdminBtn(false)
+            //         // setDisable(true)
+            //         refetch()
 
-                    Swal.fire(
-                        `${user.name} has been made Instructor`,
-                        'success'
-                      )  
-                }
+            //         Swal.fire(
+            //             `${user.name} has been made Instructor`,
+            //             'success'
+            //           )  
+            //     }
+            // })
+
+            axiosSecure.patch(`/users/instructor/${user._id}`)
+            .then(res=>{
+              if (res.data.modifiedCount > 0) {
+                setDisabledInstructorBtn(true)
+                setDisabledAdminBtn(false)
+                // setDisable(true)
+                refetch()
+
+                Swal.fire(
+                    `${user.name} has been made Instructor`,
+                    'success'
+                  )  
+            }
+
             })
 
 
@@ -66,12 +85,9 @@ const makeAdmin = user =>{
       }).then((result) => {
         if (result.isConfirmed) {
 
-            fetch(`http://localhost:3000/users/admin/${user._id}`,{
-                method: 'PATCH'
-            })
-            .then(res=>res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
+            axiosSecure.patch(`/users/admin/${user._id}`)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
                     setDisabledAdminBtn(true)
                     setDisabledInstructorBtn(false)
                     // setDisable(true)

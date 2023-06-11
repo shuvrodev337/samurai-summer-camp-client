@@ -3,17 +3,20 @@ import SectionTitle from "../../components/sectionTitle";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import SelectedClassCard from "./SelectedClassCard";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SelectedClasses = () => {
 
     const {user,loading} = useAuth()
+const [axiosSecure]= useAxiosSecure()
+
     // TODO Make a hook that load user specific selected classes, use axios secure there.
     const {data:classes=[],refetch} = useQuery({
         queryKey:['classes',user?.email],
         enabled: !loading ,
         queryFn: async()=>{
         
-            const res  = await axios.get(`http://localhost:3000/users/classes?email=${user?.email}`)
+            const res  = await axiosSecure.get(`/users/classes?email=${user?.email}`)
             return res.data
         }
     

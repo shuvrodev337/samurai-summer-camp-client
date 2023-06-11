@@ -4,9 +4,9 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const isAdmin = false
+  const isAdmin = true
   const isInstructor = false
-  const isStudent = true
+  const isStudent = false
   
 
   const handleLogOut = () => {

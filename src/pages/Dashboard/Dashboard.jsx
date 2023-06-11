@@ -5,9 +5,9 @@ import useAuth from "../../hooks/useAuth";
 
 const Dashboard = () => {
   const user = useAuth()
-  const isAdmin = false;
+  const isAdmin = true;
   const isInstructor = false;
-  const isStudent = true;
+  const isStudent = false;
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

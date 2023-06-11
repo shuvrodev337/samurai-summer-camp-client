@@ -10,9 +10,9 @@ const ClassCard = ({singleClass,refetch}) => {
   const{user} = useAuth()
   const location = useLocation()
   const navigate = useNavigate()
-    const isAdmin = false
+    const isAdmin = true
     const isInstructor = false
-    const isStudent = true
+    const isStudent = false
 
     const {_id,className,instructorEmail,classPhoto,instructorName,availableSeats,price,instructorId,status,enrolledStudents} = singleClass
     const { register,reset, handleSubmit, formState: { errors } } = useForm();

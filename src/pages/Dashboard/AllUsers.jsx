@@ -2,20 +2,29 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import UsersRow from "./UsersRow";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
 
 
     // TODO Make a hook that load all users, use axios secure there.
-    const {data:users=[],refetch} = useQuery(['users'],async()=>{
+    // const {data:users=[],refetch} = useQuery(['users'],async()=>{
 
-        const res  = await axios.get('http://localhost:3000/users')
-        return res.data
+    //     const res  = await axios.get('http://localhost:3000/users')
+    //     return res.data
+    // })
+    // console.log(users);
+
+
+
+
+    const [axiosSecure] = useAxiosSecure();
+    const { data: users = [], refetch } = useQuery(['users'], async () => {
+        const res = await axiosSecure.get('/users')
+        return res.data;
     })
+
     console.log(users);
-
-
-
 
 
     return (

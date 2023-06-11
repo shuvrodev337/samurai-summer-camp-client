@@ -3,6 +3,7 @@ import axios from "axios";
 import SectionTitle from "../../components/sectionTitle";
 import useAuth from "../../hooks/useAuth";
 import InstructorCard from "./InstructorCard";
+import { Helmet } from "react-helmet-async";
 
 const Instructors = () => {
     const {loading } = useAuth()
@@ -15,6 +16,9 @@ const Instructors = () => {
 
     return (
            <>
+           <Helmet>
+        <title>Samurai Summer Camp | Instructors</title>
+      </Helmet>
             <SectionTitle sectionHeading={`All our ${instructors.length} instructors`}></SectionTitle>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 ">
             {

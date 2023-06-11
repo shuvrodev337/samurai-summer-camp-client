@@ -3,6 +3,7 @@ import axios from "axios";
 
 import UsersRow from "./UsersRow";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
 
@@ -28,6 +29,10 @@ const AllUsers = () => {
 
 
     return (
+      <>
+      <Helmet>
+        <title>Samurai Camp | Manage Users</title>
+      </Helmet>
         <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -50,6 +55,8 @@ const AllUsers = () => {
           </tbody>
         </table>
       </div>
+      
+      </>
     );
 };
 

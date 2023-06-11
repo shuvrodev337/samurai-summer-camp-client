@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AddAClass = () => {
     const navigate = useNavigate()
@@ -63,6 +64,9 @@ const [axiosSecure]= useAxiosSecure()
 
     return (
         <>
+        <Helmet>
+        <title>Samurai Camp | Add Class</title>
+      </Helmet>
         <SectionTitle sectionHeading={'Add A Class'}></SectionTitle>
         <div className="md:w-9/12 mx-auto">
         <div className="hero-content flex-col gap-10">

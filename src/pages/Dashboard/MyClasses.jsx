@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import SectionTitle from "../../components/sectionTitle";
 import ClassCard from "../../components/ClassCard";
 import ClassesRow from "./ClassesRow";
+import { Helmet } from "react-helmet-async";
 
 const MyClasses = () => {
 const {user,loading} = useAuth()
@@ -24,6 +25,9 @@ const {user,loading} = useAuth()
 
     return (
         <div className="w-full">
+          <Helmet>
+        <title>Samurai Camp | Instructor Classes</title>
+      </Helmet>
             <SectionTitle sectionHeading={'My Classes'}></SectionTitle>
 
             {/* <div className="w-9/12 mx-auto">

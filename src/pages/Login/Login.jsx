@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import SectionTitle from "../../components/sectionTitle";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import SocialLogins from "../../components/SocialLogins";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,6 +37,9 @@ const location = useLocation()
 
     return (
     <>
+    <Helmet>
+        <title>Samurai Summer Camp | Login</title>
+      </Helmet>
     <SectionTitle sectionHeading={'Log In Here'} ></SectionTitle>
       <div className="md:w-1/2 mx-auto">
       <div className="hero-content flex-col gap-10">

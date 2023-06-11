@@ -4,6 +4,7 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import ClassCard from "../../components/ClassCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const ManageClasses = () => {
 const {loading} = useAuth()
@@ -18,6 +19,9 @@ const [axiosSecure]= useAxiosSecure()
 
     return (
         <div className="w-full">
+            <Helmet>
+        <title>Samurai Camp | Manage Classes</title>
+      </Helmet>
             <SectionTitle sectionHeading={`Manage All ${classes.length} Classes`}></SectionTitle>
             <div className="w-9/12 mx-auto">
                 {

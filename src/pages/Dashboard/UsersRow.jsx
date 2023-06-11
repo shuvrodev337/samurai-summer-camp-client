@@ -29,24 +29,6 @@ const makeInstructor = user =>{
       }).then((result) => {
         if (result.isConfirmed) {
 
-            // fetch(`http://localhost:3000/users/instructor/${user._id}`,{
-            //     method: 'PATCH'
-            // })
-            // .then(res=>res.json())
-            // .then(data => {
-            //     if (data.modifiedCount > 0) {
-            //         setDisabledInstructorBtn(true)
-            //         setDisabledAdminBtn(false)
-            //         // setDisable(true)
-            //         refetch()
-
-            //         Swal.fire(
-            //             `${user.name} has been made Instructor`,
-            //             'success'
-            //           )  
-            //     }
-            // })
-
             axiosSecure.patch(`/users/instructor/${user._id}`)
             .then(res=>{
               if (res.data.modifiedCount > 0) {

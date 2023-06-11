@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../components/sectionTitle";
 import axios from "axios";
 import ClassCard from "../../components/ClassCard";
+import { Helmet } from "react-helmet-async";
 
 const ApprovedClasses = () => {
   //  TODO write a hook that returns allclasses, instructor-specific-classes, approved-classes
@@ -17,6 +18,9 @@ const ApprovedClasses = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Samurai Summer Camp | Classes</title>
+      </Helmet>
       <SectionTitle
         sectionHeading={`All ${approvedClasses.length} classes`}
       ></SectionTitle>

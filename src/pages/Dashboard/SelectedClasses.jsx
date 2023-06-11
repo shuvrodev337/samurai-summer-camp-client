@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import SelectedClassCard from "./SelectedClassCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const SelectedClasses = () => {
 
@@ -27,7 +28,9 @@ const [axiosSecure]= useAxiosSecure()
     return (
         <div className="w-full">
             <SectionTitle sectionHeading={`My Classes`}></SectionTitle>
-
+            <Helmet>
+        <title>Samurai Camp | Selected Classes</title>
+      </Helmet>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2  w-9/12 mx-auto">
             {
 

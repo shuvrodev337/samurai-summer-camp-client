@@ -6,6 +6,7 @@ import SectionTitle from "../../components/sectionTitle";
 import axios from "axios";
 import Swal from "sweetalert2";
 import SocialLogins from "../../components/SocialLogins";
+import { Helmet } from "react-helmet-async";
 
 const Signup = () => {
     const [errorMsg,setErrorMsg] = useState('')
@@ -65,6 +66,9 @@ const Signup = () => {
 
     return (
         <>
+        <Helmet>
+        <title>Samurai Summer Camp | Sign Up</title>
+      </Helmet>
         <SectionTitle sectionHeading={'Sign Up Now!'}></SectionTitle>
         <div className="md:w-1/2 mx-auto">
         <div className="hero-content flex-col gap-10">

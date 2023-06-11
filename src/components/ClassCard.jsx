@@ -135,6 +135,7 @@ axiosSecure.patch(`/classes/feedback/${_id}`,{feedback:data.feedback})
   if (res.data.modifiedCount > 0) {
     // console.log(res.data);
     // alert('Feedback sent')
+    refetch()
     Swal.fire({
       position: 'top-end',
       icon: 'success',
@@ -208,7 +209,7 @@ const handleSelectClass = () =>{
 
 
     return (
-        <div className={`card lg:card-side ${availableSeats == 0 ?'bg-red-900' : 'bg-slate-100'}  shadow-xl my-14 items-center text-left`}>
+        <div className={`card lg:card-side ${availableSeats == 0 ?'bg-red-500' : 'bg-slate-100'}  shadow-xl my-14 items-center text-left`}>
       <figure className="md:w-1/2">
         <img src={classPhoto} alt="Album" className="w-56" />
       </figure>
@@ -297,7 +298,7 @@ const handleSelectClass = () =>{
        
 
        
-       <button onClick={handleSelectClass} disabled={isAdmin || isInstructor ||( availableSeats == 0)} className="btn btn-info w-1/2 mt-4 rounded-full mx-auto">Select</button>
+       <button onClick={handleSelectClass} disabled={isAdmin || isInstructor ||( availableSeats == 0)} className={`btn btn-info text-white w-1/2 mt-4 rounded-full mx-auto ${location?.pathname == '/dashboard/manageclasses'?'hidden':''}`}>Select</button>
 
        
         

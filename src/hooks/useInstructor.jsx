@@ -3,14 +3,14 @@ import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
 const useInstructor = () => {
-
-    const {user,loading} = useAuth
+const [axiosSecure] = useAxiosSecure()
+    const {user,loading} = useAuth()
 
     const {data: isInstructor, isLoading: isInstructorLoading}= useQuery({
         queryKey:['isInstructor', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const res = await useAxiosSecure.get(`/users/instructor/${user?.email}`);
+            const res = await axiosSecure.get(`/users/instructor/${user?.email}`);
             return res.data.instructor;
         }
 

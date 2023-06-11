@@ -15,6 +15,9 @@ import ManageClasses from "../pages/Dashboard/ManageClasses";
 import ApprovedClasses from "../pages/ApprovedClasses/ApprovedClasses";
 import PrivateRoute from "./PrivateRoute";
 import SelectedClasses from "../pages/Dashboard/SelectedClasses";
+import InstructorRoute from "./InstructorRoute";
+import AdminRoute from "./AdminRoute";
+
 
 const router = createBrowserRouter([
   {
@@ -45,7 +48,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element:<Dashboard></Dashboard>,
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children:[
       {
         path: "/dashboard/studenthome",
@@ -57,28 +60,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/instructorhome",
-        element:<InstructorHome></InstructorHome>
+        element:<InstructorRoute><InstructorHome></InstructorHome></InstructorRoute>
       },
       {
         path: "/dashboard/adminhome",
-        element:<AdminHome></AdminHome>
+        element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
         path: "/dashboard/manageclasses",
-        element:<ManageClasses></ManageClasses>
+        element:<AdminRoute><ManageClasses></ManageClasses></AdminRoute>
       },
       {
         path: "/dashboard/manageusers",
-        element:<AllUsers></AllUsers>
+        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       
       {
         path: "/dashboard/addaclass",
-        element:<AddAClass></AddAClass>
+        element:<InstructorRoute><AddAClass></AddAClass></InstructorRoute>
       },
       {
         path: "/dashboard/instructors/classes",
-        element:<MyClasses></MyClasses>
+        element:<InstructorRoute><MyClasses></MyClasses></InstructorRoute>
       },
       
       

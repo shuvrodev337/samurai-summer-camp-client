@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 
 const ClassCard = ({singleClass,refetch}) => {
@@ -13,9 +15,10 @@ const [axiosSecure]= useAxiosSecure()
 
   const location = useLocation()
   const navigate = useNavigate()
-    const isAdmin = true
-    const isInstructor = false
-    const isStudent = false
+ 
+    const [isAdmin] = useAdmin()
+    const [isInstructor]= useInstructor()
+ 
 
     const {_id,className,instructorEmail,classPhoto,instructorName,availableSeats,price,instructorId,status,enrolledStudents} = singleClass
     const { register,reset, handleSubmit, formState: { errors } } = useForm();

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SectionTitle from "../../components/sectionTitle";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
@@ -8,12 +8,13 @@ import SocialLogins from "../../components/SocialLogins";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+const location = useLocation()
   const [errorMsg,setErrorMsg] = useState('')
   const {loginWithEmailPass, logOut} = useAuth()
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm();
   const from = location.state?.from?.pathname || "/";
+ 
 
   const onSubmit = user=>{
 // console.log(user);

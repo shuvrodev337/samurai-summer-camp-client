@@ -1,12 +1,39 @@
-import { CardElement, useCartElement, useStripe } from "@stripe/react-stripe-js";
+import { CardElement,  useElements, useStripe } from "@stripe/react-stripe-js";
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+// import './CheckoutForm.css'
 
-const CheckOutForm = () => {
+const CheckOutForm = ({price,selectedClass}) => {
+    const [cardError, setCardError] = useState('');
+    const [clientSecret, setClientSecret] = useState('');
+    const {user} = useAuth()
+    const [processing, setProcessing] = useState(false);
+    const [transactionId, setTransactionId] = useState('');
+    const stripe = useStripe();
+    const navigate = useNavigate()
+    const elements = useElements();
+const [axiosSecure] = useAxiosSecure()
 
-    const stripe = useStripe()
-    const elements = useCartElement()
+    useEffect(() => {
+      if (price > 0) {
+          axiosSecure.post('/create-payment-intent', { price })
+              .then(res => {
+                  setClientSecret(res.data.clientSecret);
+              })
+      }
+  }, [price, axiosSecure])
+
+
+
     const handleSubmit = async (event)=>{
         event.preventDefault()
+
         if (!stripe || !elements) {
+            console.log('null');
+
             return
         }
         const card  = elements.getElement(CardElement)
@@ -14,11 +41,93 @@ const CheckOutForm = () => {
             return
         }
 
+        console.log('card',card);
+
+        const { error } = await stripe.createPaymentMethod({
+            type: 'card',
+            card
+        })
+
+        if (error) {
+            console.log('card error', error)
+            setCardError(error.message);
+        }
+        else {
+            setCardError('');
+        }
+
+
+        setProcessing(true)
+
+
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+          clientSecret,
+          {
+              payment_method: {
+                  card: card,
+                  billing_details: {
+                      email: user?.email || 'unknown email',
+                      name: user?.displayName || 'anonymous user'
+                  },
+              },
+          },
+      );
+      if (confirmError) {
+        console.log(confirmError);
+    }
+
+    console.log('payment intent', paymentIntent)
+    setProcessing(false)
+
+if (paymentIntent.status === 'succeeded') {
+  setTransactionId(paymentIntent.id);
+  const payment = {
+    email: user?.email,
+    transactionId: paymentIntent.id,
+    price,
+    date: new Date(),
+    quantity: 1,
+    selectedClassName : selectedClass.className,
+    selectedClassId : selectedClass._id
+    // cartItems: cart.map(item => item._id),
+    // menuItems: cart.map(item => item.menuItemId),
+    // status: 'service pending',
+    // itemNames: cart.map(item => item.name)
+}
+axiosSecure.post('/payments', payment)
+                .then(res => {
+                    // console.log(res.data.deleteResult.deletedCount);
+                    if (res.data.insertResult.insertedId && res.data.deleteResult.deletedCount) {
+                        // display confirm
+                        // alert('payment successfull')
+                        Swal.fire({
+                          position: 'top-end',
+                          icon: 'success',
+                          title: 'Payment successfull',
+                          showConfirmButton: false,
+                          timer: 1500
+                        })
+                        navigate('/dashboard/student/classes')
+
+                    }else{
+                      Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Payment not successfull!!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                    }
+                })
+
+}
+
+
     }
 
 
-
     return (
+        <>
         <form onSubmit={handleSubmit} className="w-9/12 mx-auto">
         <CardElement
           options={{
@@ -37,11 +146,14 @@ const CheckOutForm = () => {
           }}
         />
         <div className="text-center my-10">
-        <button type="submit" className="btn btn-info  w-3/12" disabled={!stripe}>
+        <button type="submit" className="btn btn-info  w-3/12" disabled={!stripe || !clientSecret || processing }>
           Pay
         </button>
         </div>
       </form>
+      {cardError && <p className="text-red-600 font-semibold my-4 ml-14">{cardError}</p>}
+         {transactionId && <p className="text-green-500">Transaction Success! TransactionId: {transactionId}</p>}
+        </>
     );
 };
 

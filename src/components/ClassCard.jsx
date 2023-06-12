@@ -190,7 +190,7 @@ const handleSelectClass = () =>{
                     
                     Swal.fire({
                         position: 'top-end',
-                        icon: 'Success',
+                        icon: 'success',
                         title: 'Class Added ',
                         showConfirmButton: false,
                         timer: 2000

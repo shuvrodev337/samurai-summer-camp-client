@@ -4,6 +4,7 @@ import axios from "axios";
 import UsersRow from "./UsersRow";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../components/sectionTitle";
 
 const AllUsers = () => {
 
@@ -33,6 +34,8 @@ const AllUsers = () => {
       <Helmet>
         <title>Samurai Camp | Manage Users</title>
       </Helmet>
+      <SectionTitle sectionHeading={'Manage All Users'}></SectionTitle>
+
         <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

@@ -28,7 +28,7 @@ const TopSlider = () => {
       data-aos="fade-down"
     >
        
-      <div className="hero-overlay bg-opacity-75 rounded-lg"></div>
+      <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
       <div className="hero-content text-center text-white">
         <div className="max-w-4xl">
           <h1 className="mb-5 text-7xl font-bold">Samurai Summer Camp</h1>
@@ -55,7 +55,7 @@ const TopSlider = () => {
       data-aos="fade-down"
     >
         
-      <div className="hero-overlay bg-opacity-75 rounded-lg"></div>
+      <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
       <div className="hero-content text-center text-white">
         <div className="max-w-4xl">
           <h1 className="mb-5 text-7xl font-bold">Samurai Summer Camp</h1>
@@ -81,7 +81,7 @@ const TopSlider = () => {
       data-aos="fade-down"
     >
         
-      <div className="hero-overlay bg-opacity-75 rounded-lg"></div>
+      <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
       <div className="hero-content text-center text-white">
         <div className="max-w-4xl">
           <h1 className="mb-5 text-7xl font-bold">Samurai Summer Camp</h1>
@@ -107,7 +107,7 @@ const TopSlider = () => {
       data-aos="fade-down"
     >
         
-      <div className="hero-overlay bg-opacity-75 rounded-lg"></div>
+      <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
       <div className="hero-content text-center text-white">
         <div className="max-w-4xl">
           <h1 className="mb-5 text-7xl font-bold">Samurai Summer Camp</h1>
@@ -133,7 +133,7 @@ const TopSlider = () => {
       data-aos="fade-down"
     >
         
-      <div className="hero-overlay bg-opacity-75 rounded-lg"></div>
+      <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
       <div className="hero-content text-center text-white">
         <div className="max-w-4xl">
           <h1 className="mb-5 text-7xl font-bold">Samurai Summer Camp</h1>

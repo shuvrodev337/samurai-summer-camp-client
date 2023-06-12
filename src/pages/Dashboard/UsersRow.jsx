@@ -3,6 +3,7 @@ import {  FaUser, FaUserNinja, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import SectionTitle from "../../components/sectionTitle";
 const UsersRow = ({user, index,refetch}) => {
   const [axiosSecure] = useAxiosSecure();
 
@@ -38,8 +39,8 @@ const makeInstructor = user =>{
                 refetch()
 
                 Swal.fire(
-                    `${user.name} has been made Instructor`,
-                    'success'
+                    `${user?.name} has been made Instructor`,
+                    'Success!!'
                   )  
             }
 
@@ -90,6 +91,8 @@ const makeAdmin = user =>{
 
     return (
       //TODO remove key from here and test
+       
+        
         <tr key={user._id}>
                   <th>{index + 1}</th>
                   <td>{user.name}</td>
@@ -103,6 +106,7 @@ const makeAdmin = user =>{
               
               </td>
                 </tr>
+        
     );
 };
 

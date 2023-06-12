@@ -3,7 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
-
+import logo1 from '../../../assets/logos/logo1.png'
 const Navbar = () => {
   const { user, logOut } = useAuth();
   // const isAdmin = true
@@ -92,6 +92,7 @@ const Navbar = () => {
             className="rounded-full  ring-4 ring-sky-500 hover:ring-sky-600"
             src={user?.photoURL}
             style={{ width: "44px", height: "44px" }}
+            referrerPolicy="no-referrer"
           />
         </div>
       )}
@@ -99,22 +100,22 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar h-24 mb-10 px-6 text-slate-500 rounded-lg mt-4 bg-transparent max-w-screen-xl">
+    <div className="navbar h-24 mb-10 px-6 text-red-500 rounded-lg mt-4 bg-transparent max-w-screen-xl  border-b-2 border-red-500 shadow-lg">
       <div className="navbar-start space-x-2">
-        {/* <NavLink to={"/"}>
-          <img src={websiteLogo} alt="" className="h-20" />
-        </NavLink> */}
+        <NavLink to={"/"}>
+          <img src={logo1} alt="" className="h-20" />
+        </NavLink>
         <NavLink to={"/"}>
           <h2 className="text-3xl font-bold">Samurai Summer Camp</h2>
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex ">
-        <ul className="menu menu-horizontal space-x-6  items-center">
+        <ul className="menu menu-horizontal space-x-6  items-center font-semibold text-gray-700">
           {centerNavItems}
         </ul>
       </div>
       <div className="navbar-end ">
-        <ul className="menu menu-horizontal space-x-6 hidden lg:flex items-center">
+        <ul className="menu menu-horizontal space-x-6 hidden lg:flex items-center text-sky-500 font-semibold">
           {endNavItems}
         </ul>
 

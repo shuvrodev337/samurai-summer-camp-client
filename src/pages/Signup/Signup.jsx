@@ -8,95 +8,97 @@ import Swal from "sweetalert2";
 import SocialLogins from "../../components/SocialLogins";
 import { Helmet } from "react-helmet-async";
 
-
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const Signup = () => {
-    const [errorMsg,setErrorMsg] = useState('')
-    const {signUp, updateUserProfile, logOut} = useAuth()
-    const navigate = useNavigate()
-    const { register,reset, handleSubmit, formState: { errors } } = useForm();
-    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+  const [errorMsg, setErrorMsg] = useState("");
+  const { signUp, updateUserProfile, logOut } = useAuth();
+  const navigate = useNavigate();
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
-    const onSubmit = (user) => {
-      if (user.password !== user.confirmPassword) {
-        setErrorMsg('Password did not match')
-        return
-    }else{
-        setErrorMsg('')
+  const onSubmit = (user) => {
+    if (user.password !== user.confirmPassword) {
+      setErrorMsg("Password did not match");
+      return;
+    } else {
+      setErrorMsg("");
     }
     console.log(user);
 
-const formData = new FormData();
-formData.append("image", user.photo[0]);
+    const formData = new FormData();
+    formData.append("image", user.photo[0]);
 
-
-      signUp(user.email, user.password)
-        .then(() => {
-          fetch(img_hosting_url, {
-            method: "POST",
-            body: formData,
-            mode:'no-cors'
-          })
-          .then(res=>res.json())
-          .then(imgResponse=>{
-          if (imgResponse.success) {
+    // signUp(user.email, user.password)
+    //   .then(() => {
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData
+      
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {
+        console.log(imgResponse);
+        if (imgResponse.success) {
+          signUp(user.email, user.password).then(() => {
             const imgURL = imgResponse.data.display_url;
-            console.log(user.name,imgURL);
-            updateUserProfile(user.name,imgURL)
-            .then(() => {
+            // console.log(user.name, imgURL);
+            updateUserProfile(user.name, imgURL).then(() => {
               //  TODO : check that defining role here is necessary or not
-              const savedUser = { name: user.name, email: user.email, photo: imgURL, role: 'student'}
-
-              axios.post('http://localhost:3000/users',savedUser)
-              .then(res=>{
-                console.log(res.data);
-                if (res.data.insertedId) {
-                  reset();
-                  Swal.fire({
-                      position: 'center',
-                      icon: 'success',
-                      title: 'Sign Up Successful! PLease Login Now',
+              const savedUser = {
+                name: user.name,
+                email: user.email,
+                photo: imgURL,
+                role: "student",
+              };
+              axios
+                .post("http://localhost:3000/users", savedUser)
+                .then((res) => {
+                  console.log(res.data);
+                  if (res.data.insertedId) {
+                    reset();
+                    Swal.fire({
+                      position: "center",
+                      icon: "success",
+                      title: "Sign Up Successful! PLease Login Now",
                       showConfirmButton: false,
-                      timer: 2000
-                  });
-                  
-                  //  TODO : uncomment logout section
-                  // logOut().then(() => {
-                  //   navigate("/login");
-                  // });
-                  
-                }
+                      timer: 2000,
+                    });
+                    //  TODO : uncomment logout section
+                    // logOut().then(() => {
+                    //   navigate("/login");
+                    // });
+                  }
+                });
+            });
+          });
+        }
+      })
 
-              })
-             
-                
-            })
+      // })
+      .catch((error) => {
+        // console.log(error.message);
+        if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+          setErrorMsg(
+            "The email address you have entered is already registered!"
+          );
+        }
+      });
+  };
 
-
-
-
-          }
-          })
-            
-        })
-        .catch((error) => {
-          // console.log(error.message);
-          if (error.message === "Firebase: Error (auth/email-already-in-use).") {
-            setErrorMsg("The email address you have entered is already registered!");
-          } 
-        });
-    };
-
-    return (
-        <>
-        <Helmet>
+  return (
+    <>
+      <Helmet>
         <title>Samurai Summer Camp | Sign Up</title>
       </Helmet>
-        <SectionTitle sectionHeading={'Sign Up Now!'}></SectionTitle>
-        <div className="md:w-1/2 mx-auto">
+      <SectionTitle sectionHeading={"Sign Up Now!"}></SectionTitle>
+      <div className="md:w-1/2 mx-auto">
         <div className="hero-content flex-col gap-10">
-          
           <div className="card  w-full  shadow-2xl bg-base-100 ">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
@@ -107,7 +109,7 @@ formData.append("image", user.photo[0]);
                   type="text"
                   placeholder="Your Name"
                   className="input input-bordered"
-                  {...register("name", { required: true })} 
+                  {...register("name", { required: true })}
                 />
                 {errors.name?.type === "required" && (
                   <p className="text-red-800 text-sm">First name is required</p>
@@ -121,8 +123,7 @@ formData.append("image", user.photo[0]);
                   type="email"
                   placeholder="Email"
                   className="input input-bordered"
-                  {...register("email", { required: true })} 
-
+                  {...register("email", { required: true })}
                 />
                 {errors.email?.type === "required" && (
                   <p className="text-red-800 text-sm">Email is required</p>
@@ -136,10 +137,12 @@ formData.append("image", user.photo[0]);
                   type="file"
                   placeholder="Your Photo"
                   className="file-input file-input-bordered file-input-accent w-full max-w-xs"
-                  {...register("photo", { required: true })} 
+                  {...register("photo", { required: true })}
                 />
                 {errors.photo?.type === "required" && (
-                  <p className="text-red-800 text-sm my-1">Photo upload is required</p>
+                  <p className="text-red-800 text-sm my-1">
+                    Photo upload is required
+                  </p>
                 )}
               </div>
               <div className="form-control">
@@ -155,7 +158,6 @@ formData.append("image", user.photo[0]);
                     minLength: 6,
                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
                   })}
-
                 />
                 {errors.password?.type === "required" && (
                   <p className="text-red-800 text-sm">Password is required</p>
@@ -177,12 +179,11 @@ formData.append("image", user.photo[0]);
                   type="password"
                   placeholder="********"
                   className="input input-bordered"
-                  {...register("confirmPassword", { required: true })} 
-
+                  {...register("confirmPassword", { required: true })}
                 />
               </div>
               <p className="text-red-800">{errorMsg}</p>
-             
+
               <div className="form-control mt-6">
                 <input
                   type="submit"
@@ -191,21 +192,26 @@ formData.append("image", user.photo[0]);
                 />
               </div>
             </form>
-            <p className="text-center">Already have an account? <Link className="btn btn-ghost btn-sm underline mb-4" to={'/login'}>Log In Here!</Link></p>
+            <p className="text-center">
+              Already have an account?{" "}
+              <Link
+                className="btn btn-ghost btn-sm underline mb-4"
+                to={"/login"}
+              >
+                Log In Here!
+              </Link>
+            </p>
             <SocialLogins></SocialLogins>
           </div>
         </div>
       </div>
-        
-        </>
-    );
+    </>
+  );
 };
 
 export default Signup;
 
-
 // signup.then er { er vitor}
-
 
 // updateUserProfile(user.name, user.photo)
 //             .then(() => {
@@ -224,15 +230,14 @@ export default Signup;
 //                       showConfirmButton: false,
 //                       timer: 2000
 //                   });
-                  
+
 //                   //  TODO : uncomment logout section
 //                   // logOut().then(() => {
 //                   //   navigate("/login");
 //                   // });
-                  
+
 //                 }
 
 //               })
-             
-                
+
 //             })

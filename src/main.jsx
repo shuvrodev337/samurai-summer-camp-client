@@ -32,3 +32,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </HelmetProvider>
   </React.StrictMode>,
 )
+// TODO max-w-screen-2xl after assignment result

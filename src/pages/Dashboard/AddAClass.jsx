@@ -44,7 +44,7 @@ const AddAClass = () => {
               addedClass.availableSeats = parseFloat(addedClass.availableSeats);
               addedClass.price = parseFloat(addedClass.price);
               addedClass.classPhoto = imgURL;
-
+console.log(addedClass);
               axiosSecure.post("/classes", addedClass).then((res) => {
                 if (res.data.insertedId) {
                   reset();
@@ -77,10 +77,10 @@ const AddAClass = () => {
                   type="text"
                   placeholder="Class Name"
                   className="input input-bordered"
-                  {...register("clssName", { required: true })}
+                  {...register("className", { required: true })}
                 />
                 {errors.calssName?.type === "required" && (
-                  <p className="text-red-800 text-sm">Class name is required</p>
+                  <p className="text-red-600 font-semibold text-sm">Class name is required</p>
                 )}
               </div>
               <div className="form-control">
@@ -118,7 +118,7 @@ const AddAClass = () => {
                   {...register("classPhoto", { required: true })}
                 />
                 {errors.classPhoto?.type === "required" && (
-                  <p className="text-red-800 text-sm my-2">
+                  <p className="text-red-600 font-semibold text-sm my-2">
                     Photo upload is required
                   </p>
                 )}
@@ -135,7 +135,7 @@ const AddAClass = () => {
                   {...register("availableSeats", { required: true })}
                 />
                 {errors.availableSeats?.type === "required" && (
-                  <p className="text-red-800 text-sm">
+                  <p className="text-red-600 font-semibold text-sm">
                     Available Seats section is required
                   </p>
                 )}
@@ -151,7 +151,7 @@ const AddAClass = () => {
                   {...register("price", { required: true })}
                 />
                 {errors.price?.type === "required" && (
-                  <p className="text-red-800 text-sm">
+                  <p className="text-red-600 font-semibold text-sm">
                     Price section is required
                   </p>
                 )}

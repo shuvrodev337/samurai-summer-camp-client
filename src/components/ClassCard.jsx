@@ -65,7 +65,7 @@ const approveClass = classToBeApproved =>{
 
                     Swal.fire(
                         `${classToBeApproved?.className} Has been Approved`,
-                        'success'
+                        'Success'
                       )  
                 }
             })
@@ -185,7 +185,7 @@ const handleSelectClass = () =>{
                     
                     Swal.fire({
                         position: 'top-end',
-                        icon: 'success',
+                        icon: 'Success',
                         title: 'Class Added ',
                         showConfirmButton: false,
                         timer: 2000

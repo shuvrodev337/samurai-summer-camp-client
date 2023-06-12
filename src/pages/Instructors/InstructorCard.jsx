@@ -7,8 +7,8 @@ const InstructorCard = ({instructor}) => {
     <img src={photo} alt="Shoes" className="rounded-full w-44 h-44" />
   </figure>
   <div className="card-body items-center text-center">
-    <h2 className="card-title">Instructor Name{name}</h2>
-    <p>Email: {email}</p>
+    <h2 className="card-title">{name}</h2>
+    <p>{email}</p>
     {/* <div className="card-actions">
       <button className="btn btn-primary">Buy Now</button>
     </div> */}

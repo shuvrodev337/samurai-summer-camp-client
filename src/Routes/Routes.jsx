@@ -18,6 +18,7 @@ import InstructorRoute from "./InstructorRoute";
 import AdminRoute from "./AdminRoute";
 import HomePage from "../pages/Home/HomePage/HomePage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Payment from "../pages/Dashboard/Payment";
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/student/classes",
         element:<SelectedClasses></SelectedClasses>
+      },
+      {
+        path: "/dashboard/student/payment",
+        element:<PrivateRoute><Payment></Payment></PrivateRoute>
+        //TODO change compo
       },
       {
         path: "/dashboard/instructorhome",

@@ -31,7 +31,7 @@ const [axiosSecure]= useAxiosSecure()
             <Helmet>
         <title>Samurai Camp | Selected Classes</title>
       </Helmet>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2  w-9/12 mx-auto">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2  w-9/12 mx-auto my-6">
             {
 
 classes.map((selectedClass,index)=><SelectedClassCard key={selectedClass._id} selectedClass={selectedClass} index={index}></SelectedClassCard>)

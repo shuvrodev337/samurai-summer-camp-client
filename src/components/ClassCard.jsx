@@ -63,10 +63,15 @@ const approveClass = classToBeApproved =>{
                     setDisable(true)
                     refetch()
 
-                    Swal.fire(
-                        `${classToBeApproved?.className} Has been Approved`,
-                        'Success'
-                      )  
+                    
+
+                      Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Class approved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
                 }
             })
 

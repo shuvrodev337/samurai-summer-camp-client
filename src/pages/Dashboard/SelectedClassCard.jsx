@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const SelectedClassCard = ({selectedClass, refetch}) => {
     const {_id,className,classPhoto,instructorName,availableSeats,price,instructorId} = selectedClass
@@ -12,8 +13,8 @@ const SelectedClassCard = ({selectedClass, refetch}) => {
           <p>Instructor : {instructorName}</p>
           <p>Available Seats : {availableSeats}</p>
           <p>Price: {price}</p>
-          <div className="card-actions">
-            <button className="btn btn-info">Pay</button>
+          <div className="card-actions ">
+            <Link to={'/dashboard/student/payment'} className="btn btn-info">Pay</Link>
             <button className="btn btn-warning">Delete</button>
           </div>
         </div>

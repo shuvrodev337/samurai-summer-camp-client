@@ -50,7 +50,7 @@
 //               //  TODO : check that defining role here is necessary or not
 //               const savedUser = { name: user.name, email: user.email, photo: imgURL, role: 'student'}
 
-//               axios.post('http://localhost:3000/users',savedUser)
+//               axios.post('https://samurai-summer-camp-server.vercel.app/users',savedUser)
 //               .then(res=>{
 //                 console.log(res.data);
 //                 if (res.data.insertedId) {
@@ -214,7 +214,7 @@
 // //               //  TODO : check that defining role here is necessary or not
 // //               const savedUser = { name: user.name, email: user.email, photo: user.photo, role: 'student'}
 
-// //               axios.post('http://localhost:3000/users',savedUser)
+// //               axios.post('https://samurai-summer-camp-server.vercel.app/users',savedUser)
 // //               .then(res=>{
 // //                 console.log(res.data);
 // //                 if (res.data.insertedId) {

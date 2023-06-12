@@ -7,7 +7,7 @@
 //     // TODO Make a hook that load all users, use axios secure there.
 //     const {data:userId,refetch} = useQuery(['users'],async()=>{
 
-//         const res  = await axios.get(`http://localhost:3000/users/${user.email}`)
+//         const res  = await axios.get(`https://samurai-summer-camp-server.vercel.app/users/${user.email}`)
 //         return res.data
 //     })
 //     console.log(usersId);

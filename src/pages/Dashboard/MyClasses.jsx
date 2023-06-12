@@ -15,7 +15,7 @@ const {user,loading} = useAuth()
         enabled: !loading ,
         queryFn: async()=>{
         //(keep this api call open for any user, because see classes by instructor functionality to be added later)
-            const res  = await axios.get(`http://localhost:3000/instructors/classes?email=${user?.email}`)
+            const res  = await axios.get(`https://samurai-summer-camp-server.vercel.app/instructors/classes?email=${user?.email}`)
             return res.data
         }
     

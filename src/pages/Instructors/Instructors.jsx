@@ -9,7 +9,7 @@ const Instructors = () => {
     const {loading } = useAuth()
     const {data:instructors=[],refetch} = useQuery(['instructors'],async()=>{
 // TODO test enabled here
-        const res  = await axios.get('http://localhost:3000/instructors')
+        const res  = await axios.get('https://samurai-summer-camp-server.vercel.app/instructors')
         return res.data
     })
     // console.log(instructors);

@@ -10,7 +10,7 @@ const ApprovedClasses = () => {
     ["approvedClasses"],
     async () => {
       // TODO test enabled here
-      const res = await axios.get("http://localhost:3000/classes/approved");
+      const res = await axios.get("https://samurai-summer-camp-server.vercel.app/classes/approved");
       return res.data;
     }
   );

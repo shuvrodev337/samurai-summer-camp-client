@@ -11,7 +11,7 @@ const Instructors = () => {
 // TODO test enabled here
         const res  = await axios.get('https://samurai-summer-camp-server.vercel.app/instructors')
         return res.data
-    })
+    },{enabled:!loading})
     // console.log(instructors);
 
     return (

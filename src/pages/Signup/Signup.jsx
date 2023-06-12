@@ -70,9 +70,9 @@ const Signup = () => {
                       timer: 2000,
                     });
                     //  TODO : uncomment logout section
-                    // logOut().then(() => {
-                    //   navigate("/login");
-                    // });
+                    logOut().then(() => {
+                      navigate("/login");
+                    });
                   }
                 });
             });

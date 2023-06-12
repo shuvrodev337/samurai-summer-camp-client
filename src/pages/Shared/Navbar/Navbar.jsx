@@ -3,15 +3,15 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
-import logo1 from '../../../assets/logos/logo1.png'
+import logo1 from "../../../assets/logos/logo1.png";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   // const isAdmin = true
   // const isInstructor = false
   // const isStudent = false
 
-  const [isAdmin] = useAdmin()
-  const [isInstructor]= useInstructor()
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -39,41 +39,25 @@ const Navbar = () => {
   // Central Nav Buttons
   const centerNavItems = (
     <>
-      <NavLink to={"/"}>Home</NavLink>
+      <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/"}>Home</NavLink>
 
-      <NavLink to={"/instructors"}>Instructors</NavLink>
-      <NavLink to={"/classes/approved"}>Classes</NavLink>
-      {/* {(isAdmin  )  && (<NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>)}
-      {(isInstructor ) && <NavLink to={"/dashboard/instructorhome"}>Dashboard</NavLink>}
-      { (!isAdmin || !isInstructor) && (<NavLink to={"/dashboard/studenthome"}>Dashboard</NavLink>)} */}
+      <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/instructors"}>Instructors</NavLink>
+      <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/classes/approved"}>Classes</NavLink>
 
-      {user && <>
-      {
-        isAdmin?(<NavLink to={"/dashboard/adminhome"}>Dashboard</NavLink>):
-        isInstructor?(<NavLink to={"/dashboard/instructorhome"}>Dashboard</NavLink>):
-        <NavLink to={"/dashboard/studenthome"}>Dashboard</NavLink>
-      }
-      </>}
-
-
+      {user && (
+        <>
+          {isAdmin ? (
+            <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/dashboard/adminhome"}>Dashboard</NavLink>
+          ) : isInstructor ? (
+            <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/dashboard/instructorhome"}>Dashboard</NavLink>
+          ) : (
+            <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/dashboard/studenthome"}>Dashboard</NavLink>
+          )}
+        </>
+      )}
     </>
   );
 
-  // Right Side Nav Buttons
-  // const endNavItems = (
-  //   <>
-
-  //           {user?<>
-  //           <NavLink to={"/login"}>Login</NavLink>
-  //           <NavLink to={"/signup"}>Sign Up</NavLink>
-  //           </>:
-
-  //           <NavLink onClick={handleLogOut}>Log Out</NavLink>
-
-  //           }
-
-  //   </>
-  // );
   const endNavItems = (
     <>
       {user?.email ? (

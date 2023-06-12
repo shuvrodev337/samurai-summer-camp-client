@@ -100,7 +100,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar h-24 mb-10 px-6 text-red-500 rounded-lg mt-4 bg-transparent max-w-screen-xl  border-b-2 border-red-500 shadow-lg">
+    <div className="navbar h-24 mb-2 px-6 text-red-500 rounded-lg mt-4 bg-transparent max-w-screen-xl  border-b-2 border-red-500 shadow-lg">
       <div className="navbar-start space-x-2">
         <NavLink to={"/"}>
           <img src={logo1} alt="" className="h-20" />

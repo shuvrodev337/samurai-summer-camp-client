@@ -6,13 +6,20 @@ import InstructorCard from "./InstructorCard";
 import { Helmet } from "react-helmet-async";
 
 const Instructors = () => {
-    const {loading } = useAuth()
-    const {data:instructors=[],refetch} = useQuery(['instructors'],async()=>{
-// TODO test enabled here
-        const res  = await axios.get('https://samurai-summer-camp-server.vercel.app/instructors')
-        return res.data
-    },{enabled:!loading})
+    const {user,loading } = useAuth()
+    const {data:instructors=[],refetch} = useQuery({
+        queryKey:['instructors'],
+        enabled :!loading ,
+
+        queryFn: async () => {
+            const res = await axios.get(`https://samurai-summer-camp-server.vercel.app/instructors/`);
+            return res.data;
+        }
+
+    })
     // console.log(instructors);
+
+
 
     return (
            <>

@@ -131,8 +131,8 @@ const denyClass = classToBeDenied =>{
 }
 // Send Feedback
 const onSubmit = (data)=>{
-console.log(data.feedback);
-console.log(instructorEmail);
+// console.log(data.feedback);
+// console.log(instructorEmail);
 closeModal()
 
 axiosSecure.patch(`/classes/feedback/${_id}`,{feedback:data.feedback})
@@ -219,7 +219,7 @@ const handleSelectClass = () =>{
         <img src={classPhoto} alt="Album" className="w-80 rounded" />
       </figure>
       <div className={`card-body ${availableSeats == 0 ?'text-white' : 'text-gray-900'}  md:w-1/2`}>
-        <h2 className="font-bold text-2xl  mb-10">Class Name: {className}</h2>
+        <h2 className="font-bold text-2xl  mb-10"> {className}</h2>
         <p>
           <span className="font-semibold text-lg ">Instructor Name: </span>
           {instructorName}

@@ -29,7 +29,7 @@ const Signup = () => {
     } else {
       setErrorMsg("");
     }
-    console.log(user);
+    // console.log(user);
 
     const formData = new FormData();
     formData.append("image", user.photo[0]);
@@ -43,7 +43,7 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((imgResponse) => {
-        console.log(imgResponse);
+        // console.log(imgResponse);
         if (imgResponse.success) {
           signUp(user.email, user.password).then(() => {
             const imgURL = imgResponse.data.display_url;

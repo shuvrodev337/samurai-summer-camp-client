@@ -1,5 +1,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+// import { motion , useInView,useAnimation} from "framer-motion"
 
 import img1 from '../../../assets/slider/slider1.jpg'
 import img2 from '../../../assets/slider/slider2.jpg'
@@ -15,8 +16,20 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation } from "swiper";
+import { Fade } from "react-awesome-reveal";
 
 const TopSlider = () => {
+  // const ref = useRef(null)
+  // const isInView  =  useInView(ref)
+  // const maincontrols = useAnimation()
+  
+  // useEffect(()=>{
+  //   if (isInView) {
+  //       maincontrols.start("visible")
+  //   }
+  //       },[isInView,maincontrols])
+
+
     return (
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         <SwiperSlide>
@@ -30,7 +43,10 @@ const TopSlider = () => {
        
       <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
       <div className="hero-content text-center text-white">
+
+        
         <div className="max-w-4xl">
+        <Fade direction="left">
           <h1 className="mb-5 text-7xl font-bold">Samurai Summer Camp</h1>
           <p className="mb-5">
           Empower Your Body and Mind: Unleash the Martial Artist in You!
@@ -42,6 +58,7 @@ const TopSlider = () => {
           <span className="italic">&quot;The ultimate aim of martial arts is not having to use them.&quot;</span> - Miyamoto Musashi
           </p>
           
+        </Fade>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ const SocialLogins = () => {
                 const savedUser = { name: loggedInUser.displayName, email: loggedInUser.email, photo: loggedInUser.photoURL}
                 axios.post('https://samurai-summer-camp-server.vercel.app/users',savedUser)
                 .then(res=>{
-                    console.log(res.data);
+                    // console.log(res.data);
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -32,7 +32,7 @@ const SocialLogins = () => {
                 })
             })
             .catch(error=>{
-                console.log(error.message);
+                // console.log(error.message);
             })
             // navigate(from, { replace: true });
     }

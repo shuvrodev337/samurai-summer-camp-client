@@ -22,7 +22,7 @@ const location = useLocation()
     loginWithEmailPass(user.email, user.password)
     .then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser);
+      // console.log(loggedUser);
       navigate(from,{replace:true});
     })
     .catch((error) => {

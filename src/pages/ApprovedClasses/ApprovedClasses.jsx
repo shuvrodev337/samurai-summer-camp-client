@@ -3,21 +3,28 @@ import SectionTitle from "../../components/sectionTitle";
 import axios from "axios";
 import ClassCard from "../../components/ClassCard";
 import { Helmet } from "react-helmet-async";
-
+import useAuth from "../../hooks/useAuth";
+import { motion } from "framer-motion"
 const ApprovedClasses = () => {
+  const {loading } = useAuth()
   //  TODO write a hook that returns allclasses, instructor-specific-classes, approved-classes
   const { data: approvedClasses = [], refetch } = useQuery(
-    ["approvedClasses"],
-    async () => {
-      // TODO test enabled here
+   {queryKey: ["approvedClasses"],
+   enabled :!loading ,
+   queryFn: async () => {
+      
       const res = await axios.get("https://samurai-summer-camp-server.vercel.app/classes/approved");
       return res.data;
-    }
+    }}
   );
-  console.log(approvedClasses);
+  // console.log(approvedClasses);
 
   return (
-    <div>
+    <motion.div
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}
+    >
       <Helmet>
         <title>Samurai Summer Camp | Classes</title>
       </Helmet>
@@ -36,7 +43,7 @@ const ApprovedClasses = () => {
 
         {}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

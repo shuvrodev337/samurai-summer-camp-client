@@ -15,14 +15,14 @@ const SelectedClassCard = ({selectedClass, refetch}) => {
           <img src={classPhoto} alt="Shoes" className="rounded" />
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title">Class name {className}</h2>
+          <h2 className="card-title">Class name : {className}</h2>
           <p>Instructor : {instructorName}</p>
           <p>Available Seats : {availableSeats}</p>
           <p>Price: {price}</p>
-          <div className="card-actions ">
+          <div className="flex items-centerc gap-4 ">
             
-            <button onClick={pay} className="btn btn-info">Pay</button>
             <button className="btn btn-warning">Delete</button>
+            <button onClick={pay} className="btn btn-info">Pay</button>
           </div>
         </div>
       </div>

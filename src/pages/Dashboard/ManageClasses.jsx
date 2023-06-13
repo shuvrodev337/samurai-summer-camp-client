@@ -15,7 +15,7 @@ const [axiosSecure]= useAxiosSecure()
         const res  = await axiosSecure.get('/classes')
         return res.data
     })
-    console.log(classes);
+    // console.log(classes);
 
     return (
         <div className="w-full">

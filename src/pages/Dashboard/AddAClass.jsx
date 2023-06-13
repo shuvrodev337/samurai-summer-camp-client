@@ -22,7 +22,7 @@ const AddAClass = () => {
   const onSubmit = (addedClass) => {
     const formData = new FormData();
     formData.append("image", addedClass.classPhoto[0]);
-    console.log(addedClass);
+    // console.log(addedClass);
     Swal.fire({
       title: "Are you sure?",
       text: `You will add ${addedClass.calssName} class`,
@@ -44,7 +44,7 @@ const AddAClass = () => {
               addedClass.availableSeats = parseFloat(addedClass.availableSeats);
               addedClass.price = parseFloat(addedClass.price);
               addedClass.classPhoto = imgURL;
-console.log(addedClass);
+// console.log(addedClass);
               axiosSecure.post("/classes", addedClass).then((res) => {
                 if (res.data.insertedId) {
                   reset();

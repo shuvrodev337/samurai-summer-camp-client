@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAdmin from "../../../hooks/useAdmin";
@@ -6,9 +6,7 @@ import useInstructor from "../../../hooks/useInstructor";
 import logo1 from "../../../assets/logos/logo1.png";
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  // const isAdmin = true
-  // const isInstructor = false
-  // const isStudent = false
+  const location = useLocation()
 
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();

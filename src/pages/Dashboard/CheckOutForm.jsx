@@ -32,7 +32,6 @@ const [axiosSecure] = useAxiosSecure()
         event.preventDefault()
 
         if (!stripe || !elements) {
-            console.log('null');
 
             return
         }
@@ -87,19 +86,19 @@ if (paymentIntent.status === 'succeeded') {
     price,
     date: new Date(),
     quantity: 1,
-    selectedClassName : selectedClass.className,
-    selectedClassId : selectedClass._id
-    // cartItems: cart.map(item => item._id),
-    // menuItems: cart.map(item => item.menuItemId),
-    // status: 'service pending',
-    // itemNames: cart.map(item => item.name)
+    className : selectedClass.className,
+    selectedClassId : selectedClass._id,
+    classPhoto: selectedClass.classPhoto,
+    instructorName: selectedClass.instructorName
 }
+
+
 axiosSecure.post('/payments', payment)
                 .then(res => {
-                    // console.log(res.data.deleteResult.deletedCount);
-                    if (res.data.insertResult.insertedId && res.data.deleteResult.deletedCount) {
-                        // display confirm
-                        // alert('payment successfull')
+                  console.log(res);
+                    console.log(res.data.deleteResult.deletedCount);
+                    if (res.data.insertResult && res.data.deleteResult) {
+                        
                         Swal.fire({
                           position: 'top-end',
                           icon: 'success',
@@ -107,7 +106,6 @@ axiosSecure.post('/payments', payment)
                           showConfirmButton: false,
                           timer: 1500
                         })
-                        navigate('/dashboard/student/classes')
 
                     }else{
                       Swal.fire({
@@ -118,7 +116,9 @@ axiosSecure.post('/payments', payment)
                         timer: 1500
                       })
                     }
-                })
+                    
+                  })
+                  navigate('/dashboard/student/classes')
 
 }
 

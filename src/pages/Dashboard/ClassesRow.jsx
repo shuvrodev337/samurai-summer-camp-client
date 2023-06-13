@@ -1,7 +1,7 @@
 
 const ClassesRow = ({singleClass,index,refetch}) => {
     const {_id,className,instructorEmail,classPhoto,instructorName,availableSeats,price,instructorId,status,enrolledStudents,feedback} = singleClass
-console.log(singleClass);
+// console.log(singleClass);
     return (
         <tr>
                   <th>{index + 1}</th>

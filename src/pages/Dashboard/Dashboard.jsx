@@ -33,7 +33,7 @@ const Dashboard = () => {
         </label>
       </div>
       <div className="drawer-side">
-          <Fade direction="left">
+          {/* <Fade direction="left"> */}
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bg-gray-900 text-sky-500">
           {/* Sidebar content here */}
@@ -105,14 +105,14 @@ const Dashboard = () => {
       </>
       }
 
-          <div className="divider"></div>
+          {/* <div className="divider"></div> */}
           <li>
             <NavLink to={"/"}>
               <FaHome></FaHome>
               Home</NavLink>
           </li>
         </ul>
-    </Fade>
+    {/* </Fade> */}
       </div>
     </div>
 

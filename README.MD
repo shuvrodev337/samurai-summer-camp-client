@@ -1,4 +1,6 @@
-# Main features of this project
+# Project: Samurai Summer Camp
+
+# Main features of my project
 
 * Navigation and Routing by React Router.
 * User Authentication using Firebase
@@ -9,7 +11,7 @@
 * MongoDB CRUD operations to achieve varoius Client-side requirements.
 * Eye-pleasing subtle design with Tailwind and DaisyUI.
 * Dark and light Mode Toggle
-* Use of React Wesome Reveal, sweetAlert2 etc packages.
+* Use of React swiper, React Lottie , React Awesome Reveal, SweetAlert2 etc packages.
 
 
 

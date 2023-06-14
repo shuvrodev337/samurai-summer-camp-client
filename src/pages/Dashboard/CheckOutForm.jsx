@@ -77,7 +77,7 @@ const [axiosSecure] = useAxiosSecure()
         console.log(confirmError);
     }
 
-    console.log('payment intent', paymentIntent)
+    // console.log('payment intent', paymentIntent)
     setProcessing(false)
 
 if (paymentIntent.status === 'succeeded') {
@@ -98,27 +98,8 @@ if (paymentIntent.status === 'succeeded') {
 
 axiosSecure.post('/payments', payment)
                 .then(res => {
-                  // console.log(res);
-                  //   console.log(res.data.deleteResult.deletedCount);
-                  //   if (res.data.insertResult && res.data.deleteResult) {
-                        
-                  //       Swal.fire({
-                  //         position: 'top-end',
-                  //         icon: 'success',
-                  //         title: 'Payment successfull',
-                  //         showConfirmButton: false,
-                  //         timer: 1500
-                  //       })
-
-                  //   }else{
-                  //     Swal.fire({
-                  //       position: 'top-end',
-                  //       icon: 'error',
-                  //       title: 'Payment not successfull!!',
-                  //       showConfirmButton: false,
-                  //       timer: 1500
-                  //     })
-                  //   }
+                  // console.log(res.data);
+                  
                     
                   })
                   navigate('/dashboard/student/enrolled-classes')
@@ -129,6 +110,15 @@ axiosSecure.post('/payments', payment)
                     showConfirmButton: false,
                     timer: 1500
                   })
+                  axiosSecure.patch(`/classes/update/${selectedClass?.instructorId}`)
+                  .then(res=>{
+                    // console.log(res.data);
+                  })
+                  axiosSecure.patch(`/instructors/update/${selectedClass?.instructorId}`)
+                  .then(res=>{
+                    // console.log(res.data);
+                  })
+                  
 
 }
 

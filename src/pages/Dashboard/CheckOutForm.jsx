@@ -6,7 +6,9 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 // import './CheckoutForm.css'
 
-const CheckOutForm = ({price,selectedClass}) => {
+const CheckOutForm = ({selectedClass}) => {
+  const {_id,className,classPhoto,instructorName,availableSeats,price,instructorId} = selectedClass
+
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const {user} = useAuth()
@@ -86,39 +88,47 @@ if (paymentIntent.status === 'succeeded') {
     price,
     date: new Date(),
     quantity: 1,
-    className : selectedClass.className,
+    className,
     selectedClassId : selectedClass._id,
-    classPhoto: selectedClass.classPhoto,
-    instructorName: selectedClass.instructorName
+    classPhoto,
+    instructorName,
+    instructorId
 }
 
 
 axiosSecure.post('/payments', payment)
                 .then(res => {
-                  console.log(res);
-                    console.log(res.data.deleteResult.deletedCount);
-                    if (res.data.insertResult && res.data.deleteResult) {
+                  // console.log(res);
+                  //   console.log(res.data.deleteResult.deletedCount);
+                  //   if (res.data.insertResult && res.data.deleteResult) {
                         
-                        Swal.fire({
-                          position: 'top-end',
-                          icon: 'success',
-                          title: 'Payment successfull',
-                          showConfirmButton: false,
-                          timer: 1500
-                        })
+                  //       Swal.fire({
+                  //         position: 'top-end',
+                  //         icon: 'success',
+                  //         title: 'Payment successfull',
+                  //         showConfirmButton: false,
+                  //         timer: 1500
+                  //       })
 
-                    }else{
-                      Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Payment not successfull!!',
-                        showConfirmButton: false,
-                        timer: 1500
-                      })
-                    }
+                  //   }else{
+                  //     Swal.fire({
+                  //       position: 'top-end',
+                  //       icon: 'error',
+                  //       title: 'Payment not successfull!!',
+                  //       showConfirmButton: false,
+                  //       timer: 1500
+                  //     })
+                  //   }
                     
                   })
                   navigate('/dashboard/student/classes')
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Payment successfull',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
 
 }
 

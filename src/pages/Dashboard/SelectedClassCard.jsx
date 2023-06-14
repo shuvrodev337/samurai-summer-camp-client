@@ -1,4 +1,6 @@
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SelectedClassCard = ({selectedClass, refetch}) => {
   const navigate = useNavigate()
@@ -8,6 +10,20 @@ const SelectedClassCard = ({selectedClass, refetch}) => {
     const pay =()=>{
       // navigate('/dashboard/student/payment',{state:{price:price}})
       navigate('/dashboard/student/payment',{state:selectedClass})
+    }
+    const deleteClass =()=>{
+      axios.delete(`https://samurai-summer-camp-server.vercel.app/users/selectedclass/${_id}`)
+      .then(res=>{
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `${className} deleted from list !!`,
+            showConfirmButton: false,
+            timer: 1500
+        });
+        }
+      })
     }
     return (
         <div className="card bg-slate-100 text-gray-800  shadow-2xl">
@@ -21,7 +37,7 @@ const SelectedClassCard = ({selectedClass, refetch}) => {
           <p>Price: {price}</p>
           <div className="flex items-centerc gap-4 ">
             
-            <button className="btn btn-warning">Delete</button>
+            <button onClick={deleteClass} className="btn btn-warning">Delete</button>
             <button onClick={pay} className="btn btn-info">Pay</button>
           </div>
         </div>

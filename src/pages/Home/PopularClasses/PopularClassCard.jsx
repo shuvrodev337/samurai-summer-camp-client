@@ -15,7 +15,7 @@ const PopularClassCard = ({ popularClass }) => {
   return (
     <Fade direction="left">
       <div className="card bg-slate-100 text-gray-800  shadow-2xl">
-        <figure className="px-10 w-96 mx-auto pt-10 ">
+        <figure className="px-10 w-96 h-96 mx-auto pt-10 ">
           <img src={classPhoto} alt="Class-photo" className="rounded" />
         </figure>
         <div className="card-body items-center text-center">

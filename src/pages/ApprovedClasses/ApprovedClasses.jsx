@@ -17,7 +17,7 @@ const ApprovedClasses = () => {
       return res.data;
     }}
   );
-  console.log(approvedClasses);
+  // console.log(approvedClasses);
 
   return (
     <motion.div

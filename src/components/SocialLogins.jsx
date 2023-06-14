@@ -15,7 +15,7 @@ const SocialLogins = () => {
         loginWithGoogle()
             .then(result=>{
                 const loggedInUser = result.user;
-                console.log(loggedInUser);
+                // console.log(loggedInUser);
                 const savedUser = { name: loggedInUser.displayName, email: loggedInUser.email, photo: loggedInUser.photoURL}
                 axios.post('https://samurai-summer-camp-server.vercel.app/users',savedUser)
                 .then(res=>{

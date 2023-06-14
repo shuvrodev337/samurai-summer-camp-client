@@ -42,7 +42,7 @@ const [axiosSecure] = useAxiosSecure()
             return
         }
 
-        console.log('card',card);
+        // console.log('card',card);
 
         const { error } = await stripe.createPaymentMethod({
             type: 'card',
@@ -50,7 +50,7 @@ const [axiosSecure] = useAxiosSecure()
         })
 
         if (error) {
-            console.log('card error', error)
+            // console.log('card error', error)
             setCardError(error.message);
         }
         else {

@@ -5,7 +5,7 @@ const InstructorHome = () => {
     return (
         <div className='w-full'>
             
-            <SectionTitle sectionHeading={'Instructor Home'}></SectionTitle>
+            <SectionTitle sectionHeading={'Instructor Home'}  sectionSubHeading={'Coming Soon...'}></SectionTitle>
             
         </div>
     );

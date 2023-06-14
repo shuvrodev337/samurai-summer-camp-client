@@ -7,7 +7,7 @@ const usePopularClasses = () => {
     const {loading} = useAuth()
     const {data:classes=[],refetch} = useQuery({
         queryKey:['popularClasses'],
-        enabled: !loading ,
+        // enabled: !loading ,
         queryFn: async()=>{
         
             const res  = await axios.get(`https://samurai-summer-camp-server.vercel.app/classes/popular`)

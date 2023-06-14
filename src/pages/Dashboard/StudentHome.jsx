@@ -4,8 +4,8 @@ import SectionTitle from "../../components/sectionTitle";
 
 const StudentHome = () => {
     return (
-        <div>
-            <SectionTitle sectionHeading={'Student Home'}></SectionTitle>
+        <div className="w-full">
+            <SectionTitle sectionHeading={'Student Home'}  sectionSubHeading={'Coming Soon...'}></SectionTitle>
         </div>
     );
 };

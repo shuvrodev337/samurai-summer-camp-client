@@ -1,8 +1,10 @@
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SelectedClassCard = ({selectedClass, refetch}) => {
+  const [axiosSecure] = useAxiosSecure()
   const navigate = useNavigate()
     const {_id,className,classPhoto,instructorName,availableSeats,price,instructorId} = selectedClass
 
@@ -12,9 +14,10 @@ const SelectedClassCard = ({selectedClass, refetch}) => {
       navigate('/dashboard/student/payment',{state:selectedClass})
     }
     const deleteClass =()=>{
-      axios.delete(`https://samurai-summer-camp-server.vercel.app/users/selectedclass/${_id}`)
+      axiosSecure.delete(`/users/selectedclass/${_id}`)
       .then(res=>{
         if (res.data.deletedCount > 0) {
+          refetch()
           Swal.fire({
             position: 'center',
             icon: 'success',

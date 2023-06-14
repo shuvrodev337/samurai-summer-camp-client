@@ -22,7 +22,7 @@ const PopularClasses = () => {
     const [classes] = usePopularClasses()
     return (
         <div>
-            <SectionTitle sectionHeading={'Most Popular Classes'}></SectionTitle>
+            <SectionTitle sectionHeading={'Our Most Popular Classes'} sectionSubHeading={"Train with the Best, Discover Our Most Popular Martial Arts Classes"}></SectionTitle>
 
              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2  w-9/12 mx-auto my-6 ">
 

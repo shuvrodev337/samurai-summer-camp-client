@@ -8,16 +8,16 @@ import { motion } from "framer-motion"
 const ApprovedClasses = () => {
   const {loading } = useAuth()
   //  TODO write a hook that returns allclasses, instructor-specific-classes, approved-classes
-  const { data: approvedClasses = [], refetch } = useQuery(
+  const { data: approvedClasses = [], refetch ,isLoading} = useQuery(
    {queryKey: ["approvedClasses"],
-   enabled :!loading ,
+  //  enabled :!loading ,
    queryFn: async () => {
       
       const res = await axios.get("https://samurai-summer-camp-server.vercel.app/classes/approved");
       return res.data;
     }}
   );
-  // console.log(approvedClasses);
+  console.log(approvedClasses);
 
   return (
     <motion.div
@@ -29,7 +29,7 @@ const ApprovedClasses = () => {
         <title>Samurai Summer Camp | Classes</title>
       </Helmet>
       <SectionTitle
-        sectionHeading={`All ${approvedClasses.length} classes`}
+        sectionHeading={`All Our ${isLoading?'': approvedClasses.length} classes`}
       ></SectionTitle>
 
       <div className="w-9/12 mx-auto">

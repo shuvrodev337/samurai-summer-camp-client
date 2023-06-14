@@ -20,6 +20,7 @@ import HomePage from "../pages/Home/HomePage/HomePage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Payment from "../pages/Dashboard/Payment";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses";
+import PaymentHistory from "../pages/Dashboard/paymentHistory";
 
 
 const router = createBrowserRouter([
@@ -69,7 +70,12 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/student/payment",
         element:<PrivateRoute><Payment></Payment></PrivateRoute>
-        //TODO change compo
+        
+      },
+      {
+        path: "/dashboard/student/paymenthistory",
+        element:<PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
+        
       },
       {
         path: "/dashboard/instructorhome",

@@ -7,7 +7,7 @@ const PopularInstructors = () => {
 const [instructors] = usePopularInstructors()
   return (
     <div>
-      <SectionTitle sectionHeading={"Our Most Popular Instructors"}></SectionTitle>
+      <SectionTitle sectionHeading={"Our Most Popular Instructors"} sectionSubHeading={'Join Our Community of Martial Arts Excellence with Our Leading Instructors'}></SectionTitle>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 ">
             {
                 instructors.map(instructor=><InstructorCard key={instructor._id} instructor={instructor}></InstructorCard>)

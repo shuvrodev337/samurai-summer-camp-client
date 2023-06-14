@@ -4,7 +4,7 @@ import SectionTitle from "../../components/sectionTitle";
 const AdminHome = () => {
     return (
         <div className="w-full">
-            <SectionTitle sectionHeading={'Admin Home'}></SectionTitle>
+            <SectionTitle sectionHeading={'Admin Home'} sectionSubHeading={'Coming Soon...'}></SectionTitle>
             
         </div>
     );

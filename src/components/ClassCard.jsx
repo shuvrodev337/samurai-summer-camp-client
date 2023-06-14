@@ -16,8 +16,9 @@ const [axiosSecure]= useAxiosSecure()
   const location = useLocation()
   const navigate = useNavigate()
  
-    const [isAdmin] = useAdmin()
-    const [isInstructor]= useInstructor()
+    const [isAdmin,isAdminLoading] = useAdmin()
+    const [isInstructor,isInstructorLoading]= useInstructor()
+    console.log(isAdmin,isInstructorLoading);
  
 
     const {_id,className,instructorEmail,classPhoto,instructorName,availableSeats,price,instructorId,status,enrolledStudents} = singleClass

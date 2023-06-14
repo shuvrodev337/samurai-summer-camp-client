@@ -1,11 +1,11 @@
-import { FaEnvelope, FaFacebook, FaInstagram, FaTwitter, FaVoicemail } from "react-icons/fa";
+import { FaEnvelope, FaFacebook, FaInstagram, FaTwitter,  } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo1 from '../../../assets/logos/logo1.png'
 const Footer = () => {
   const contactEmail = 'shuvrodevmondal337@gmail.com'
 
     return (
-        <footer className="footer  footer-center p-10 bg-base-300 text-base-content  ">
+        <footer className="footer  footer-center p-10 bg-base-300 text-base-content  mt-10">
       
       
         <div className="grid grid-flow-col gap-6">

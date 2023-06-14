@@ -83,7 +83,7 @@ const [axiosSecure] = useAxiosSecure()
 if (paymentIntent.status === 'succeeded') {
   setTransactionId(paymentIntent.id);
   const payment = {
-    email: user?.email,
+    studentEmail: user?.email,
     transactionId: paymentIntent.id,
     price,
     date: new Date(),
@@ -121,7 +121,7 @@ axiosSecure.post('/payments', payment)
                   //   }
                     
                   })
-                  navigate('/dashboard/student/classes')
+                  navigate('/dashboard/student/enrolled-classes')
                   Swal.fire({
                     position: 'top-end',
                     icon: 'success',

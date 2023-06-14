@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
 import { Helmet } from "react-helmet-async";
-import { FaHome,FaTools,FaToolbox, FaBook, FaPlusSquare, FaWallet , FaUser, FaUserNinja, FaUserShield} from "react-icons/fa";
+import { FaHome,FaTools,FaToolbox, FaBook, FaPlusSquare, FaWallet , FaUser, FaUserNinja, FaUserShield, FaBookOpen} from "react-icons/fa";
 
 import { Fade } from "react-awesome-reveal";
 
@@ -89,9 +89,15 @@ const Dashboard = () => {
               </li>
               <li>
 
-                <NavLink to={"/dashboard/student/classes"}>
+                <NavLink to={"/dashboard/student/selected-classes"}>
               <FaBook></FaBook>
-                  My Classes</NavLink>
+                  My Selected Classes</NavLink>
+              </li>
+              <li>
+
+                <NavLink to={"/dashboard/student/enrolled-classes"}>
+              <FaBookOpen></FaBookOpen>
+                  My Enrolled Classes</NavLink>
               </li>
               
               <li>

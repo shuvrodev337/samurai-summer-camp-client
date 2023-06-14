@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute";
 import HomePage from "../pages/Home/HomePage/HomePage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Payment from "../pages/Dashboard/Payment";
+import EnrolledClasses from "../pages/Dashboard/EnrolledClasses";
 
 
 const router = createBrowserRouter([
@@ -55,11 +56,15 @@ const router = createBrowserRouter([
     children:[
       {
         path: "/dashboard/studenthome",
-        element:<StudentHome></StudentHome>
+        element:<PrivateRoute><StudentHome></StudentHome></PrivateRoute>
       },
       {
-        path: "/dashboard/student/classes",
-        element:<SelectedClasses></SelectedClasses>
+        path: "/dashboard/student/selected-classes",
+        element:<PrivateRoute><SelectedClasses></SelectedClasses></PrivateRoute>
+      },
+      {
+        path: "/dashboard/student/enrolled-classes",
+        element:<PrivateRoute><EnrolledClasses></EnrolledClasses></PrivateRoute>
       },
       {
         path: "/dashboard/student/payment",

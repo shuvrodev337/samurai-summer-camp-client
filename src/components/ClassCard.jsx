@@ -197,7 +197,7 @@ const handleSelectClass = () =>{
                     });
                     
                   
-                    navigate('/dashboard/student/classes');
+                    navigate('/dashboard/student/selected-classes');
                     
                   }
   

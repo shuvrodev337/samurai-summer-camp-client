@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // import './CheckoutForm.css'
 
 const CheckOutForm = ({selectedClass}) => {
-  const {_id,className,classPhoto,instructorName,availableSeats,price,instructorId} = selectedClass
+  const {_id,className,classPhoto,instructorName,availableSeats,price,instructorId,classId} = selectedClass
 
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
@@ -110,7 +110,8 @@ axiosSecure.post('/payments', payment)
                     showConfirmButton: false,
                     timer: 1500
                   })
-                  axiosSecure.patch(`/classes/update/${selectedClass?.instructorId}`)
+                  console.log(`/classes/update/${classId}`);
+                  axiosSecure.patch(`/classes/update/${classId}`)
                   .then(res=>{
                     // console.log(res.data);
                   })

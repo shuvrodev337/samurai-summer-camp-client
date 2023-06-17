@@ -17,7 +17,7 @@ const AboutMartialArt = () => {
     return (
         <div>
         <SectionTitle sectionHeading={'9 Martial Arts'} sectionSubHeading={'You should know about'}></SectionTitle>
-           <div className="grid grid-cols-2 gap-6 md:grid-cols-3 ">
+           <div className="grid grid-cols-1 gap-6 md:grid-cols-3 ">
             {
                 martialArts.map(martialArt=><MartialArtCard key={martialArt._id} martialArt={martialArt}></MartialArtCard>)
             }

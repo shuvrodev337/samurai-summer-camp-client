@@ -12,6 +12,7 @@ const SelectedClasses = () => {
 const [axiosSecure]= useAxiosSecure()
 
     // TODO Make a hook that load user specific selected classes, use axios secure there.
+    //Loading User Selected classes
     const {data:classes=[],refetch} = useQuery({
         queryKey:['classes',user?.email],
         enabled: !loading ,
@@ -34,7 +35,7 @@ const [axiosSecure]= useAxiosSecure()
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2  w-9/12 mx-auto my-6">
             {
 
-classes.map((selectedClass,index)=><SelectedClassCard key={selectedClass._id} selectedClass={selectedClass} index={index}></SelectedClassCard>)
+classes.map((selectedClass,index)=><SelectedClassCard key={selectedClass._id} selectedClass={selectedClass} index={index} refetch={refetch}></SelectedClassCard>)
 
 }
             </div>

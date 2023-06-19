@@ -1,12 +1,48 @@
 import { FaEnvelope, FaFacebook, FaInstagram, FaTwitter,  } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo1 from '../../../assets/logos/logo1.png'
+import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 const Footer = () => {
   const contactEmail = 'shuvrodevmondal337@gmail.com'
+  const {user} = useAuth()
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor()
 
+  const centerNavItems = (
+    <>
+      <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/"}>Home</NavLink>
+
+      <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/instructors"}>Instructors</NavLink>
+      <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/classes/approved"}>Classes</NavLink>
+
+      {user && (
+        <>
+          {isAdmin ? (
+            <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/dashboard/adminhome"}>Dashboard</NavLink>
+          ) : isInstructor ? (
+            <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/dashboard/instructorhome"}>Dashboard</NavLink>
+          ) : (
+            <NavLink className={({ isActive }) => (isActive ? "text-red-500" : "")} to={"/dashboard/studenthome"}>Dashboard</NavLink>
+          )}
+        </>
+      )}
+    
+  
+ 
+    </>
+  );
+
+  
     return (
-        <footer className="footer  footer-center p-10 bg-base-300 text-base-content  mt-10">
       
+        <footer className="footer  footer-center p-10 bg-base-300 text-base-content  mt-10">
+      <div className="navbar-center hidden lg:flex ">
+        <ul className="menu menu-horizontal space-x-6  items-center font-semibold text-gray-700">
+          {centerNavItems}
+        </ul>
+      </div>
       
         <div className="grid grid-flow-col gap-6">
         

@@ -6,6 +6,8 @@ import AboutMartialArt from "../../AboutMartialArt/AboutMartialArt";
 import OurPartners from "../OurPartners/OurPartners";
 import Feedback from "../Feedback/Feedback";
 import Testimonials from "../Testimonials/Testimonials";
+import Offer from "../Offer/Offer";
+import Gallery from "../Gallery/Gallery";
 
 const HomePage = () => {
   return (
@@ -17,6 +19,8 @@ const HomePage = () => {
       <PopularClasses></PopularClasses>
       <PopularInstructors></PopularInstructors>
       <AboutMartialArt></AboutMartialArt>
+      <Gallery></Gallery>
+      <Offer></Offer>
       <Testimonials></Testimonials>
       <Feedback></Feedback>
       <OurPartners></OurPartners>

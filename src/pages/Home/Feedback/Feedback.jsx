@@ -43,7 +43,7 @@ const Feedback = () => {
         sectionHeading={"We Value Your Feedback"}
         sectionSubHeading={"Share Your Thoughts and Experience with Us"}
       ></SectionTitle>
-      <div className="md:flex gap-12 my-10">
+      <div className="md:flex gap-12 my-14">
 
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center gap-6 p-6">
         <h1 className="text-3xl font-semibold">OUR MISSION</h1>
@@ -57,7 +57,7 @@ const Feedback = () => {
         </p>
       </div>
       <div className="card  w-full md:w-1/2  shadow-2xl bg-base-100 ">
-      <h1 className="text-3xl text-center font-semibold">Your Feedback</h1>
+      <h1 className="text-3xl text-center font-semibold my-4">Your Feedback</h1>
 
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             

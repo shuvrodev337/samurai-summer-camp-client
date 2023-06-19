@@ -55,6 +55,12 @@ const Dashboard = () => {
           </li>
           <li>
             
+            <NavLink to={"/dashboard/manage-feedbacks"}>
+            <FaTools></FaTools>
+              Manage Feedbacks</NavLink>
+          </li>
+          <li>
+            
             <NavLink to={"/dashboard/manageclasses"}>
             <FaToolbox></FaToolbox>
               Manage Classes</NavLink>

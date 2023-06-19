@@ -12,23 +12,10 @@ import img5 from '../../../assets/slider/slider5.jpg'
 import "swiper/css";
 import "swiper/css/navigation";
 
-// import "./styles.css";
-
-// import required modules
 import { Navigation } from "swiper";
 import { Fade } from "react-awesome-reveal";
 
 const TopSlider = () => {
-  // const ref = useRef(null)
-  // const isInView  =  useInView(ref)
-  // const maincontrols = useAnimation()
-  
-  // useEffect(()=>{
-  //   if (isInView) {
-  //       maincontrols.start("visible")
-  //   }
-  //       },[isInView,maincontrols])
-
 
     return (
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">

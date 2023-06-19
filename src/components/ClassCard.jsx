@@ -132,8 +132,7 @@ const denyClass = classToBeDenied =>{
 }
 // Send Feedback
 const onSubmit = (data)=>{
-// console.log(data.feedback);
-// console.log(instructorEmail);
+
 closeModal()
 
 axiosSecure.patch(`/classes/feedback/${_id}`,{feedback:data.feedback})

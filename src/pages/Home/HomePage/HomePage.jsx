@@ -3,6 +3,9 @@ import TopSlider from "../TopSlider/TopSlider";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
 import AboutMartialArt from "../../AboutMartialArt/AboutMartialArt";
+import OurPartners from "../OurPartners/OurPartners";
+import Feedback from "../Feedback/Feedback";
+import Testimonials from "../Testimonials/Testimonials";
 
 const HomePage = () => {
   return (
@@ -14,6 +17,9 @@ const HomePage = () => {
       <PopularClasses></PopularClasses>
       <PopularInstructors></PopularInstructors>
       <AboutMartialArt></AboutMartialArt>
+      <Testimonials></Testimonials>
+      <Feedback></Feedback>
+      <OurPartners></OurPartners>
       
     </div>
   );

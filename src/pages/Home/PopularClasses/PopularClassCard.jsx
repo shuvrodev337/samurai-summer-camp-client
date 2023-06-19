@@ -1,5 +1,6 @@
 // import { motion } from "framer-motion"
 import { Fade } from "react-awesome-reveal";
+import { Link } from "react-router-dom";
 
 const PopularClassCard = ({ popularClass }) => {
   const {
@@ -20,8 +21,14 @@ const PopularClassCard = ({ popularClass }) => {
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title">{className}</h2>
-          <p>{instructorName}</p>
-          <p>{price}</p>
+          <p>Istructor {instructorName}</p>
+          <p>Enrollment Price ${price} only</p>
+          {
+            availableSeats === 0 ?
+          <p>No seat available</p>:
+          <p>{availableSeats} seats available</p>
+          }
+          <Link className="btn btn-sm rounded-full mt-2" to={"/classes/approved"}>See All Classes</Link>
         </div>
       </div>
     </Fade>

@@ -15,20 +15,18 @@ const PopularClassCard = ({ popularClass }) => {
 
   return (
     <Fade direction="left">
-      <div className="card shadow-2xl ">
-        <figure className="px-10 w-56 h-56 md:w-96 md:h-96 mx-auto pt-10 ">
-          <img src={classPhoto} alt="Class-photo" className="rounded" />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h2 className="card-title">{className}</h2>
-          <p>Istructor {instructorName}</p>
-          <p>Enrollment Price ${price} only</p>
-          {
-            availableSeats === 0 ?
-          <p>No seat available</p>:
-          <p>{availableSeats} seats available</p>
-          }
-          <Link className="btn btn-sm rounded-full mt-2" to={"/classes/approved"}>See All Classes</Link>
+      <div className="shadow-2xl rounded-3xl  p-6  space-y-2 flex flex-col h-400">
+        
+        <div className="flex-1 overflow-hidden">
+        <img src={classPhoto} alt="class-photo" className="h-64 w-full object-cover hover:scale-125 duration-1000"/>
+      </div>
+        <div className="mt-auto">
+          <h3 className="mb-2 mt-2 text-xl font-medium"> {className}</h3>
+          <p  className="mb-2">Istructor : {instructorName}</p>
+          <p  className="mb-2">Enrollment Price : ${price} only</p>
+          <p  className="mb-2">Available Seats : {availableSeats?`${availableSeats}`:'None'}</p>
+          
+          <Link className="btn btn-sm rounded-full" to={"/classes/approved"}>See All Classes</Link>
         </div>
       </div>
     </Fade>
@@ -36,4 +34,3 @@ const PopularClassCard = ({ popularClass }) => {
 };
 
 export default PopularClassCard;
-// bg-gradient-to-b from-sky-100 to-slate-100  text-gray-800

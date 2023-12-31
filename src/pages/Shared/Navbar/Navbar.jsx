@@ -37,7 +37,7 @@ const Navbar = () => {
 
   //Dark-light toggle
 const [theme,setTheme] = useTheme()
-console.log(theme);
+// console.log(theme);
   const handleTheme = (e)=>{
     if (e.target.checked) {
       setTheme('dark')
@@ -107,7 +107,7 @@ console.log(theme);
   );
 
   return (
-    <div className={`navbar h-20 px-6  ${theme =='light'? 'bg-white':'bg-gray-900'} shadow-lg sticky top-0 z-50`}>
+    <div className={`navbar h-20 px-6 py-2 ${theme =='light'? 'bg-white':'bg-gray-900'} shadow-lg sticky top-0 z-50 `}>
       <div className="navbar-start space-x-2">
         <NavLink to={"/"}>
           <img src={logo1} alt="" className="h-20" />
@@ -117,12 +117,12 @@ console.log(theme);
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex ">
-        <ul className="menu menu-horizontal space-x-6  items-center font-normal text-base text-gray-700">
+        <ul className="menu menu-horizontal space-x-6  items-center font-normal text-base ">
           {centerNavItems}
         </ul>
       </div>
       <div className="navbar-end ">
-        <ul className="menu menu-horizontal space-x-6 hidden lg:flex items-center text-base text-grfont-normal text-gray-700 ">
+        <ul className="menu menu-horizontal space-x-6 hidden lg:flex items-center text-base text-grfont-normal  ">
           {endNavItems}
         </ul>
 
@@ -145,7 +145,7 @@ console.log(theme);
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-800 text-gray-700 rounded-box w-52 items-center gap-2 z-10"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 items-center gap-2 z-10"
           >
             {centerNavItems}
             {endNavItems}

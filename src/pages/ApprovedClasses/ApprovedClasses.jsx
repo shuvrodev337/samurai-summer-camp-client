@@ -32,7 +32,7 @@ const ApprovedClasses = () => {
         sectionHeading={`All Our ${isLoading?'': approvedClasses.length} classes`}
       ></SectionTitle>
 
-      <div className="w-9/12 mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3  mx-auto">
         {approvedClasses.map((singleClass, index) => (
           <ClassCard
             key={singleClass._id}

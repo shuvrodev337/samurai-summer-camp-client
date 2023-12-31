@@ -1,23 +1,9 @@
-import axios from "axios";
 import SectionTitle from "../../../components/sectionTitle";
-import useAuth from "../../../hooks/useAuth";
 import PopularClassCard from "./PopularClassCard";
-import { useQuery } from "@tanstack/react-query";
 import usePopularClasses from "../../../hooks/usePopularClasses";
 
 const PopularClasses = () => {
-// const {loading} = useAuth()
-//     const {data:classes=[],refetch} = useQuery({
-//         queryKey:['popularClasses'],
-//         enabled: !loading ,
-//         queryFn: async()=>{
-        
-//             const res  = await axios.get(`https://samurai-summer-camp-server.vercel.app/classes/popular`)
-//             return res.data
-//         }
-    
-//     })
-//     console.log(classes);
+
 
     const [classes] = usePopularClasses()
     return (

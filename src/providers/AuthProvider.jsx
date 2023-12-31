@@ -46,7 +46,7 @@ const logOut = ()=>{
 useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
             setUser(currentUser)
-            console.log('Current Logged in user', currentUser);
+            // console.log('Current Logged in user', currentUser);
 
             // Get and Set Token
             if (currentUser) {

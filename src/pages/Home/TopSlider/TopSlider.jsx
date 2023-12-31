@@ -21,14 +21,14 @@ const TopSlider = () => {
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         <SwiperSlide>
             <div
-      className="hero min-h-screen rounded-lg relative"
+      className="hero min-h-screen  relative"
       style={{
         backgroundImage: `url(${img1})`,
       }}
       data-aos="fade-down"
     >
        
-      <div className="hero-overlay bg-opacity-60 rounded-lg"></div>
+      <div className="hero-overlay bg-opacity-60 "></div>
       <div className="hero-content text-center text-white">
 
         

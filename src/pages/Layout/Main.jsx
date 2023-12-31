@@ -19,7 +19,7 @@ if (isInView) {
     return (
         <div className="">
             <Navbar></Navbar>
-            <div ref={ref} className=" min-h-[calc(100vh-372px)]">
+            <div ref={ref} className=" min-h-[calc(100vh-372px)] max-w-screen-xl mx-auto">
                 <motion.div
                 variants={{
                     hidden:{opacity:0, y:75},

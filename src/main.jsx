@@ -8,9 +8,6 @@ import {
 import router from './Routes/Routes.jsx';
 import AuthProvider from './providers/AuthProvider';
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
@@ -24,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <HelmetProvider>
     <AuthProvider>
     <QueryClientProvider client={queryClient}>
-    <div className='max-w-screen-xl mx-auto'>
+    <div className='max-w-screen-2xl mx-auto'>
     <RouterProvider router={router} />
     </div>
     </QueryClientProvider>
@@ -32,4 +29,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </HelmetProvider>
   </React.StrictMode>,
 )
-// TODO max-w-screen-2xl after assignment result
